@@ -280,6 +280,18 @@ footer{
 @media(max-width:768px){
   .floating-nav,.floating-social{display:none;}
 }
+  /* ===== SCROLL ANIMATION ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.9s ease;
+}
+
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
+
 </style>
 </head>
 
@@ -304,7 +316,7 @@ footer{
   </div>
 </div>
 
-<section id="home">
+<section id="home" class="reveal">
   <div class="hero-text">
     <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
     <p><span id="hero-typing"></span></p>
@@ -326,9 +338,9 @@ footer{
   </div>
 </section>
 
-<section id="about"><h2>About Me</h2></section>
-<section id="work"><h2>My Work</h2></section>
-<section id="contact"><h2>Contact</h2></section>
+<section id="about" class="reveal"><h2>About Me</h2></section>
+<section id="work" class="reveal"><h2>My Work</h2></section>
+<section id="contact" class="reveal"><h2>Contact</h2></section>
 
 <footer>© 2026 Chandan Kumar</footer>
 
@@ -386,6 +398,26 @@ function typingEffect(id){
 
 typingEffect("hero-typing");
 typingEffect("mini-typing");
+  <script>
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+  reveals.forEach(el=>{
+    const windowHeight = window.innerHeight;
+    const elementTop = el.getBoundingClientRect().top;
+    const revealPoint = 120;
+
+    if(elementTop < windowHeight - revealPoint){
+      el.classList.add("active");
+    }
+  });
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll(); // run once on load
+</script>
+
 </script>
 
 </body>
