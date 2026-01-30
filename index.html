@@ -49,7 +49,6 @@ nav ul li a{
   text-decoration:none;
   color:#333;
   font-size:14px;
-  padding-bottom:4px;
 }
 
 nav ul li a.active{
@@ -79,7 +78,6 @@ nav ul li a.active{
 }
 
 .mini-profile h4{
-  margin:0;
   font-size:14px;
 }
 
@@ -102,10 +100,6 @@ nav ul li a.active{
   display:flex;
   flex-direction:column;
   gap:15px;
-}
-
-.title-box{
-  max-width:500px;
 }
 
 .hero-text h1{
@@ -140,36 +134,26 @@ nav ul li a.active{
   border-radius:50%;
   border:6px solid var(--accent);
 }
-  /* TEXT ANIMATION */
+
+/* ===== TEXT ANIMATION ===== */
 .animate-title{
   opacity:0;
   transform:translateY(30px);
   animation:fadeUp 1s ease forwards;
 }
 
-.animate-sub{
-  font-size:18px;
-  color:#444;
-  margin-top:10px;
-}
-
-/* Typing cursor */
 .cursor{
   margin-left:2px;
   animation:blink 1s infinite;
 }
 
 @keyframes fadeUp{
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  to{opacity:1;transform:translateY(0);}
 }
 
 @keyframes blink{
   50%{opacity:0;}
 }
-
 
 /* ===== SECTIONS ===== */
 section{
@@ -210,19 +194,6 @@ footer{
   padding:20px;
 }
 
-/* ===== TYPING ===== */
-.typing{
-  font-size:11px;
-}
-
-.cursor{
-  animation:blink 1s infinite;
-}
-
-@keyframes blink{
-  50%{opacity:0;}
-}
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
   #home{
@@ -259,27 +230,24 @@ footer{
   <img src="images/profile.jpeg">
   <div>
     <h4>Chandan Kumar</h4>
-    <p class="typing">
-      <span id="typing-text"></span><span class="cursor">|</span>
-    </p>
+    <p><span id="mini-typing"></span><span class="cursor">|</span></p>
   </div>
 </div>
 
 <!-- HERO -->
 <section id="home">
   <div class="hero-text">
-  <h1 class="animate-title">
-    Hi There,<br>
-    I’m <span>Chandan Kumar</span>
-  </h1>
+    <h1 class="animate-title">
+      Hi There,<br>
+      I’m <span>Chandan Kumar</span>
+    </h1>
 
- <p class="animate-sub">
-  <span id="typing-text"></span><span class="cursor">|</span>
-</p>
+    <p>
+      <span id="hero-typing"></span><span class="cursor">|</span>
+    </p>
 
-  <button onclick="location.href='#about'">About Me</button>
-</div>
-
+    <button onclick="location.href='#about'">About Me</button>
+  </div>
 
   <div class="hero-img">
     <img src="images/profile.jpeg">
@@ -316,9 +284,7 @@ footer{
   <p style="text-align:center;">Email: your@email.com</p>
 </section>
 
-<footer>
-  © 2026 Chandan Kumar
-</footer>
+<footer>© 2026 Chandan Kumar</footer>
 
 <script>
 const mini = document.getElementById("miniProfile");
@@ -336,45 +302,29 @@ window.addEventListener("scroll",()=>{
   });
 
   links.forEach(a=>{
-    a.classList.remove("active");
-    if(a.getAttribute("href") === "#"+current){
-      a.classList.add("active");
-    }
+    a.classList.toggle("active", a.getAttribute("href") === "#"+current);
   });
 });
-</script>
 
-<script>
-const text = "Video Editor & Graphic Designer";
-let i = 0;
-
-function typeEffect(){
-  if(i < text.length){
-    document.getElementById("typing-text").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeEffect,80);
-  }
-}
-window.onload = typeEffect;
-</script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+/* TYPING EFFECT */
+function typingEffect(elementId){
   const text = "Video Editor & Graphic Designer";
-  const typingEl = document.getElementById("typing-text");
-  let index = 0;
+  let i = 0;
+  const el = document.getElementById(elementId);
 
-  function typeEffect() {
-    if (index < text.length) {
-      typingEl.textContent += text.charAt(index);
-      index++;
-      setTimeout(typeEffect, 80);
+  function type(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      i++;
+      setTimeout(type,80);
     }
   }
+  type();
+}
 
-  typeEffect();
-});
+typingEffect("hero-typing");
+typingEffect("mini-typing");
 </script>
-
 
 </body>
 </html>
