@@ -415,6 +415,44 @@ h2{text-align:center;margin-bottom:30px;}
     height:240px;
   }
 }
+/* ===== IMAGE LIGHTBOX ===== */
+#lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+}
+
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  animation:zoomIn .3s ease;
+}
+
+#lightbox .close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  color:#fff;
+  cursor:pointer;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(.8);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+.work-container img{
+  transition:.3s;
+}
+
+.work-container img:hover{
+  transform:scale(1.03);
+}
 
 </style>
 </head>
@@ -525,7 +563,8 @@ h2{text-align:center;margin-bottom:30px;}
   <!-- ITEM 1 (Image Left, Text Right) -->
   <div class="work-item">
     <div class="work-media">
-      <img src="images/poster1.jpg" alt="Poster Design 1">
+      <img src="images/poster1.jpg" onclick="openLightbox(this)" style="cursor:pointer;">
+
     </div>
 
     <div class="work-content">
@@ -647,6 +686,21 @@ window.addEventListener("scroll",reveal);
 reveal();
 </script>
 <script async src="https://www.instagram.com/embed.js"></script>
+<!-- IMAGE LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img">
+</div>
+<script>
+function openLightbox(img){
+  document.getElementById("lightbox").style.display="flex";
+  document.getElementById("lightbox-img").src = img.src;
+}
+
+function closeLightbox(){
+  document.getElementById("lightbox").style.display="none";
+}
+</script>
 
 </body>
 </html>
