@@ -287,6 +287,52 @@ footer{
     display:none;
   }
 }
+/* FLOATING NAVIGATION */
+.floating-nav{
+  position:fixed;
+  top:50%;
+  left:80px; /* beside social icons */
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  z-index:999;
+}
+
+.floating-nav a{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  text-decoration:none;
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+  transition:transform 0.4s ease, background 0.4s ease, color 0.4s ease;
+  color:#333;
+}
+
+/* HOVER EFFECT */
+.floating-nav a:hover{
+  transform:translateX(8px) scale(1.15);
+  background:var(--primary);
+  color:#fff;
+}
+
+/* ACTIVE SECTION HIGHLIGHT */
+.floating-nav a.active{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* MOBILE HIDE */
+@media(max-width:768px){
+  .floating-nav{
+    display:none;
+  }
+}
 
 </style>
 </head>
@@ -408,23 +454,51 @@ function typingEffect(id){
 
 typingEffect("hero-typing");
 typingEffect("mini-typing");
+  <script>
+const navIcons = document.querySelectorAll(".floating-nav a");
+const pageSections = document.querySelectorAll("section");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+
+  pageSections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 200) {
+      current = sec.id;
+    }
+  });
+
+  navIcons.forEach(icon => {
+    icon.classList.toggle(
+      "active",
+      icon.getAttribute("href") === "#" + current
+    );
+  });
+});
+</script>
+
 </script>
 <div class="floating-social">
-  <a href="https://instagram.com/YOUR_USERNAME" target="_blank" title="Instagram">
+  <a href="https://www.instagram.com/ck_editxz?igsh=MTMzb205aG9yaHJqNA==" target="_blank" title="Instagram">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
   </a>
 
-  <a href="https://facebook.com/YOUR_USERNAME" target="_blank" title="Facebook">
+  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" title="Facebook">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
   </a>
 
-  <a href="https://youtube.com/@YOUR_USERNAME" target="_blank" title="YouTube">
+  <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank" title="YouTube">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg">
   </a>
 
-  <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" title="LinkedIn">
+  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" title="LinkedIn">
     <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
   </a>
+</div>
+<div class="floating-nav">
+  <a href="#home" title="Home">🏠</a>
+  <a href="#about" title="About">👤</a>
+  <a href="#work" title="Work">💼</a>
+  <a href="#contact" title="Contact">✉️</a>
 </div>
 
 </body>
