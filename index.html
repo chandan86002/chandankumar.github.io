@@ -46,6 +46,12 @@ nav ul li a{
   text-decoration:none;
   color:#333;
   font-size:14px;
+  padding-bottom:4px;
+  transition:.25s;
+}
+
+nav ul li a:hover{
+  color:var(--primary);
 }
 
 nav ul li a.active{
@@ -91,48 +97,38 @@ nav ul li a.active{
 .hero-text span{color:var(--primary);}
 .hero-text p{font-size:18px;margin-top:10px;}
 
-/* LEFT FLOATING SOCIAL ICONS */
-.floating-social{
-  position:fixed;
-  top:50%;
-  left:18px;
-  transform:translateY(-50%);
+/* ================= SOCIAL LINKS (UNDER TEXT) ================= */
+.social-links{
+  margin-top:18px;
   display:flex;
-  flex-direction:column;
   gap:14px;
-  z-index:999;
 }
 
-.floating-social a{
-  width:42px;
-  height:42px;
+.social-links a{
+  width:40px;
+  height:40px;
   border-radius:50%;
   background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 6px 16px rgba(0,0,0,.15);
-  transition:.4s;
+  box-shadow:0 6px 16px rgba(0,0,0,.12);
+  transition:.35s;
 }
 
-.floating-social a:hover{
-  transform:translateX(8px) scale(1.15);
-  background:#1e40af;
+.social-links a:hover{
+  transform:scale(1.12);
+  background:var(--primary);
 }
 
-.floating-social svg{
+.social-links svg{
   width:18px;
   height:18px;
   fill:#333;
 }
 
-.floating-social a:hover svg{
+.social-links a:hover svg{
   fill:#fff;
-}
-
-/* Hide on mobile */
-@media(max-width:768px){
-  .floating-social{display:none;}
 }
 
 /* ================= PROFILE IMAGE ================= */
@@ -144,7 +140,7 @@ nav ul li a.active{
   border-radius:50%;
   padding:6px;
   background:conic-gradient(var(--accent),var(--primary),var(--accent));
-  transition:.8s;
+  transition:transform .9s ease, box-shadow .9s ease;
 }
 
 .profile-wrap:hover{
@@ -177,7 +173,46 @@ section{
 
 h2{text-align:center;margin-bottom:30px;}
 
-/* ================= FLOATING NAV (RIGHT SVG) ================= */
+/* ================= LEFT FLOATING SOCIAL ================= */
+.floating-social{
+  position:fixed;
+  top:50%;
+  left:18px;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  z-index:999;
+}
+
+.floating-social a{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:.4s;
+}
+
+.floating-social a:hover{
+  transform:translateX(8px) scale(1.12);
+  background:var(--primary);
+}
+
+.floating-social svg{
+  width:18px;
+  height:18px;
+  fill:#333;
+}
+
+.floating-social a:hover svg{
+  fill:#fff;
+}
+
+/* ================= RIGHT FLOATING NAV ================= */
 .floating-nav{
   position:fixed;
   right:20px;
@@ -212,7 +247,7 @@ h2{text-align:center;margin-bottom:30px;}
 .floating-nav a.active{
   background:var(--primary);
   color:#fff;
-  transform:translateX(-6px) scale(1.1);
+  transform:translateX(-6px) scale(1.08);
 }
 
 /* ================= SCROLL ANIMATION ================= */
@@ -228,11 +263,16 @@ h2{text-align:center;margin-bottom:30px;}
 
 /* ================= RESPONSIVE ================= */
 @media(max-width:900px){
-  #home{grid-template-columns:1fr;text-align:center;}
+  #home{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding:120px 20px;
+  }
   .social-links{justify-content:center;}
 }
+
 @media(max-width:768px){
-  .floating-nav{display:none;}
+  .floating-nav,.floating-social{display:none;}
 }
 </style>
 </head>
@@ -249,46 +289,34 @@ h2{text-align:center;margin-bottom:30px;}
   </ul>
 </nav>
 
+<!-- MINI PROFILE -->
 <div class="mini-profile" id="miniProfile">
-  <img src="images/profile.jpeg">
+  <img src="images/profile.jpeg" alt="Profile">
   <div>
     <h4>Chandan Kumar</h4>
     <p id="mini-typing"></p>
   </div>
 </div>
 
+<!-- HOME -->
 <section id="home" class="reveal">
   <div class="hero-text">
     <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
     <p id="hero-typing"></p>
 
+    <!-- SOCIAL ICONS UNDER TEXT -->
     <div class="social-links">
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/ck_editxz" target="_blank">
-        <svg viewBox="0 0 24 24">
-          <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z"/>
-        </svg>
+      <a href="https://www.instagram.com/ck_editxz" target="_blank" rel="noopener" title="Instagram">
+        <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.3a3.7 3.7 0 103.7 3.7A3.7 3.7 0 0012 8.3zm0 6a2.3 2.3 0 112.3-2.3A2.3 2.3 0 0112 14.3zM17.7 6.7a.9.9 0 11-.9-.9.9.9 0 01.9.9z"/></svg>
       </a>
-
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank">
-        <svg viewBox="0 0 24 24">
-          <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 013.8-3.8H17v3h-2c-1 0-1.5.5-1.5 1.4V12H17l-.5 3h-3v7A10 10 0 0022 12z"/>
-        </svg>
+      <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" rel="noopener" title="Facebook">
+        <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 013.8-3.8H17v3h-2c-1 0-1.5.5-1.5 1.4V12H17l-.5 3h-3v7A10 10 0 0022 12z"/></svg>
       </a>
-
-      <!-- YouTube -->
-      <a href="https://youtube.com/@ck__editxz" target="_blank">
-        <svg viewBox="0 0 24 24">
-          <path d="M21.6 7.2a3 3 0 00-2.1-2.1C17.9 4.7 12 4.7 12 4.7s-5.9 0-7.5.4A3 3 0 002.4 7.2 31.6 31.6 0 002.1 12a31.6 31.6 0 00.3 4.8 3 3 0 002.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 002.1-2.1A31.6 31.6 0 0021.9 12z"/>
-        </svg>
+      <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank" rel="noopener" title="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M21.6 7.2a3 3 0 00-2.1-2.1C17.9 4.7 12 4.7 12 4.7s-5.9 0-7.5.4A3 3 0 002.4 7.2 31.6 31.6 0 002.1 12a31.6 31.6 0 00.3 4.8 3 3 0 002.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 002.1-2.1A31.6 31.6 0 0021.9 12zM10 15.5v-7l6 3.5z"/></svg>
       </a>
-
-      <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank">
-        <svg viewBox="0 0 24 24">
-          <path d="M6.5 6.5a2 2 0 11-2-2 2 2 0 012 2zM5 8.5h3v11H5zM10 8.5h2.9V10h.1a3.2 3.2 0 012.9-1.6c3.1 0 3.7 2 3.7 4.7v6.4h-3v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8h-3z"/>
-        </svg>
+      <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" rel="noopener" title="LinkedIn">
+        <svg viewBox="0 0 24 24"><path d="M6.5 6.5a2 2 0 11-2-2 2 2 0 012 2zM5 8.5h3v11H5zM10 8.5h2.9V10h.1a3.2 3.2 0 012.9-1.6c3.1 0 3.7 2 3.7 4.7v6.4h-3v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8h-3z"/></svg>
       </a>
     </div>
   </div>
@@ -296,46 +324,82 @@ h2{text-align:center;margin-bottom:30px;}
   <div class="hero-img">
     <div class="profile-wrap">
       <div class="profile-inner">
-        <img src="images/profile.jpeg">
+        <img src="images/profile.jpeg" alt="Chandan Kumar">
       </div>
     </div>
   </div>
 </section>
 
-<section id="about" class="reveal"><h2>About Me</h2></section>
-<section id="work" class="reveal"><h2>My Work</h2></section>
-<section id="contact" class="reveal"><h2>Contact</h2></section>
+<section id="about" class="reveal">
+  <h2>About Me</h2>
+  <p style="text-align:center;max-width:700px;margin:auto;">
+    I create professional video edits, posters, visiting cards and social media creatives.
+  </p>
+</section>
 
+<section id="work" class="reveal">
+  <h2>My Work</h2>
+  <p style="text-align:center;">(Add your posters/cards here)</p>
+</section>
+
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+  <p style="text-align:center;">Email: your@email.com</p>
+</section>
+
+<footer>© 2026 Chandan Kumar</footer>
+
+<!-- LEFT FLOATING SOCIAL ICONS -->
+<div class="floating-social">
+  <a href="https://www.instagram.com/ck_editxz" target="_blank" rel="noopener" title="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.3a3.7 3.7 0 103.7 3.7A3.7 3.7 0 0012 8.3zm0 6a2.3 2.3 0 112.3-2.3A2.3 2.3 0 0112 14.3zM17.7 6.7a.9.9 0 11-.9-.9.9.9 0 01.9.9z"/></svg>
+  </a>
+  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" rel="noopener" title="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 013.8-3.8H17v3h-2c-1 0-1.5.5-1.5 1.4V12H17l-.5 3h-3v7A10 10 0 0022 12z"/></svg>
+  </a>
+  <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank" rel="noopener" title="YouTube">
+    <svg viewBox="0 0 24 24"><path d="M21.6 7.2a3 3 0 00-2.1-2.1C17.9 4.7 12 4.7 12 4.7s-5.9 0-7.5.4A3 3 0 002.4 7.2 31.6 31.6 0 002.1 12a31.6 31.6 0 00.3 4.8 3 3 0 002.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 002.1-2.1A31.6 31.6 0 0021.9 12zM10 15.5v-7l6 3.5z"/></svg>
+  </a>
+  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" rel="noopener" title="LinkedIn">
+    <svg viewBox="0 0 24 24"><path d="M6.5 6.5a2 2 0 11-2-2 2 2 0 012 2zM5 8.5h3v11H5zM10 8.5h2.9V10h.1a3.2 3.2 0 012.9-1.6c3.1 0 3.7 2 3.7 4.7v6.4h-3v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8h-3z"/></svg>
+  </a>
+</div>
+
+<!-- RIGHT FLOATING NAV (SVG) -->
 <div class="floating-nav">
-  <a href="#home"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3z"/></svg></a>
-  <a href="#about"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg></a>
-  <a href="#work"><svg viewBox="0 0 24 24"><path d="M9 3h6v2H9V3zm-4 4h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg></a>
-  <a href="#contact"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2z"/></svg></a>
+  <a href="#home" title="Home"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3z"/></svg></a>
+  <a href="#about" title="About"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg></a>
+  <a href="#work" title="Work"><svg viewBox="0 0 24 24"><path d="M9 3h6v2H9V3zm-4 4h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg></a>
+  <a href="#contact" title="Contact"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v1l8 5 8-5V7H4zm16 3.2l-8 5-8-5V17h16v-6.8z"/></svg></a>
 </div>
 
 <script>
-const mini=document.getElementById("miniProfile");
-const navLinks=document.querySelectorAll("nav a");
-const navIcons=document.querySelectorAll(".floating-nav a");
-const sections=document.querySelectorAll("section");
+/* MINI PROFILE + ACTIVE NAV */
+const mini = document.getElementById("miniProfile");
+const navLinks = document.querySelectorAll("nav a");
+const navIcons = document.querySelectorAll(".floating-nav a");
+const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll",()=>{
-  mini.style.display=window.scrollY>300?"flex":"none";
+  mini.style.display = window.scrollY > 300 ? "flex" : "none";
+
   let current="";
   sections.forEach(sec=>{
-    if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+    if(window.scrollY >= sec.offsetTop - 200) current = sec.id;
   });
-  navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
-  navIcons.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+
+  navLinks.forEach(a=>a.classList.toggle("active", a.getAttribute("href") === "#"+current));
+  navIcons.forEach(a=>a.classList.toggle("active", a.getAttribute("href") === "#"+current));
 });
 
+/* TYPING */
 function typing(id){
   const text="Video Editor & Graphic Designer";
   let i=0, el=document.getElementById(id);
   el.textContent="";
   (function type(){
     if(i<text.length){
-      el.textContent+=text[i++];
+      el.textContent += text[i++];
       setTimeout(type,80);
     }
   })();
@@ -343,10 +407,11 @@ function typing(id){
 typing("hero-typing");
 typing("mini-typing");
 
-const reveals=document.querySelectorAll(".reveal");
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll(".reveal");
 function reveal(){
   reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight-120){
+    if(el.getBoundingClientRect().top < window.innerHeight - 120){
       el.classList.add("active");
     }
   });
@@ -354,32 +419,6 @@ function reveal(){
 window.addEventListener("scroll",reveal);
 reveal();
 </script>
-<!-- LEFT SIDE FLOATING SOCIAL ICONS -->
-<div class="floating-social">
-  <a href="https://www.instagram.com/ck_editxz" target="_blank" title="Instagram">
-    <svg viewBox="0 0 24 24">
-      <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z"/>
-    </svg>
-  </a>
-
-  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" title="Facebook">
-    <svg viewBox="0 0 24 24">
-      <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 013.8-3.8H17v3h-2c-1 0-1.5.5-1.5 1.4V12H17l-.5 3h-3v7A10 10 0 0022 12z"/>
-    </svg>
-  </a>
-
-  <a href="https://youtube.com/@ck__editxz" target="_blank" title="YouTube">
-    <svg viewBox="0 0 24 24">
-      <path d="M21.6 7.2a3 3 0 00-2.1-2.1C17.9 4.7 12 4.7 12 4.7s-5.9 0-7.5.4A3 3 0 002.4 7.2 31.6 31.6 0 002.1 12a31.6 31.6 0 00.3 4.8 3 3 0 002.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 002.1-2.1A31.6 31.6 0 0021.9 12z"/>
-    </svg>
-  </a>
-
-  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" title="LinkedIn">
-    <svg viewBox="0 0 24 24">
-      <path d="M6.5 6.5a2 2 0 11-2-2 2 2 0 012 2zM5 8.5h3v11H5zM10 8.5h2.9V10h.1a3.2 3.2 0 012.9-1.6c3.1 0 3.7 2 3.7 4.7v6.4h-3v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8h-3z"/>
-    </svg>
-  </a>
-</div>
 
 </body>
 </html>
