@@ -313,6 +313,108 @@ h2{text-align:center;margin-bottom:30px;}
   transform:translateY(-8px);
   box-shadow:0 14px 30px rgba(0,0,0,0.15);
 }
+/* ================= WORK SECTION ================= */
+.work-section{
+  text-align:center;
+}
+
+.work-subtitle{
+  max-width:720px;
+  margin:0 auto 40px;
+  color:#555;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.work-item{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:center;
+  background:#fff;
+  border-radius:18px;
+  padding:22px;
+  margin:22px auto;
+  box-shadow:0 10px 24px rgba(0,0,0,0.09);
+  overflow:hidden;
+}
+
+.work-item.reverse .work-media{
+  order:2;
+}
+.work-item.reverse .work-content{
+  order:1;
+  text-align:left;
+}
+
+.work-media{
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
+}
+
+.work-media img,
+.work-media video{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  display:block;
+  transition:transform .8s ease;
+}
+
+/* slow zoom on hover */
+.work-item:hover .work-media img,
+.work-item:hover .work-media video{
+  transform:scale(1.04);
+}
+
+.work-content{
+  text-align:left;
+}
+
+.work-content h3{
+  font-size:20px;
+  color:var(--primary);
+  margin-bottom:10px;
+}
+
+.work-content p{
+  color:#444;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.work-tags{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.work-tags span{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(30,64,175,0.08);
+  color:var(--primary);
+  border:1px solid rgba(30,64,175,0.15);
+}
+
+/* Mobile Responsive */
+@media(max-width:900px){
+  .work-item{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .work-item.reverse .work-media,
+  .work-item.reverse .work-content{
+    order:unset;
+  }
+  .work-media img,
+  .work-media video{
+    height:240px;
+  }
+}
 
 </style>
 </head>
@@ -416,7 +518,72 @@ h2{text-align:center;margin-bottom:30px;}
   </div>
 </section>
 
-<section id="work" class="reveal"><h2>My Work</h2></section>
+<section id="work" class="reveal work-section">
+  <h2>My Work</h2>
+  <p class="work-subtitle">Some of my posters, designs, and video edits for clients.</p>
+
+  <!-- ITEM 1 (Image Left, Text Right) -->
+  <div class="work-item">
+    <div class="work-media">
+      <img src="images/poster1.jpg" alt="Poster Design 1">
+    </div>
+
+    <div class="work-content">
+      <h3>Poster Design for Client</h3>
+      <p>
+        This poster was designed for a client promotion. Clean layout, bold typography,
+        and high-contrast colors to grab attention on social media.
+      </p>
+
+      <div class="work-tags">
+        <span>Poster</span><span>Social Media</span><span>Canva</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEM 2 (Image Right, Text Left) -->
+  <div class="work-item reverse">
+    <div class="work-media">
+      <img src="images/poster2.jpg" alt="Poster Design 2">
+    </div>
+
+    <div class="work-content">
+      <h3>Festival Poster Design</h3>
+      <p>
+        A festive poster concept with modern colors and balanced spacing.
+        Designed for quick readability and strong brand presence.
+      </p>
+
+      <div class="work-tags">
+        <span>Poster</span><span>Branding</span><span>Photoshop</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEM 3 (Video Example) -->
+  <div class="work-item">
+    <div class="work-media">
+      <!-- Put your video file inside /images folder OR use YouTube link -->
+      <video controls poster="images/video-thumb.jpg">
+        <source src="images/sample-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+
+    <div class="work-content">
+      <h3>Instagram Reel Edit</h3>
+      <p>
+        Short reel edit with smooth transitions, beats sync, and clean text overlays.
+        Made to increase engagement and watch time.
+      </p>
+
+      <div class="work-tags">
+        <span>Video</span><span>Reel</span><span>CapCut</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact" class="reveal"><h2>Contact</h2></section>
 
 <footer style="background:var(--dark);color:#fff;text-align:center;padding:20px;">© 2026 Chandan Kumar</footer>
