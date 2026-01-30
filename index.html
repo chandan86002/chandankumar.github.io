@@ -5,6 +5,24 @@
 <title>Chandan Kumar | Portfolio</title>
 
 <style>
+  .typing {
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
 :root{
   --primary:#1e3a8a;
   --accent:#22c55e;
@@ -176,15 +194,7 @@ footer{
   font-weight:500;
 }
 
-.cursor{
-  animation: blink 1s infinite;
-}
 
-@keyframes blink{
-  0%{opacity:1;}
-  50%{opacity:0;}
-  100%{opacity:1;}
-}
 
 </style>
 </head>
@@ -204,7 +214,7 @@ footer{
 
 <!-- MINI PROFILE -->
 <div class="mini-profile" id="miniProfile">
-  <img src="images/profile.jpg">
+  <img src="images/profile.jpeg">
   <div>
     <h4>Chandan Kumar</h4>
     <p class="typing">
@@ -217,13 +227,18 @@ footer{
 <!-- HERO -->
 <section id="home">
   <div class="hero-text">
-    <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
+  <h1>Chandan Kumar</h1>
+  <p class="typing">
+    <span id="typing-text"></span><span class="cursor">|</span>
+  </p>
+</div>
+
     <p>Video Editor & Graphic Designer</p>
     <button onclick="location.href='#about'">About Me</button>
   </div>
 
   <div class="hero-img">
-    <img src="images/profile.jpg">
+    <img src="images/profile.jpeg">
   </div>
 </section>
 
@@ -290,20 +305,20 @@ window.addEventListener("scroll",()=>{
   });
 });
 </script>
+
 <script>
 const text = "Video Editor & Graphic Designer";
 let index = 0;
-const speed = 80;
 
-function typeEffect(){
-  if(index < text.length){
+function typeEffect() {
+  if (index < text.length) {
     document.getElementById("typing-text").innerHTML += text.charAt(index);
     index++;
-    setTimeout(typeEffect, speed);
+    setTimeout(typeEffect, 80);
   }
 }
 
-typeEffect();
+window.onload = typeEffect;
 </script>
 
 </body>
