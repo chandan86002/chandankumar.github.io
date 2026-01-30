@@ -79,6 +79,15 @@ body{
     transform: rotate(360deg);
   }
 }
+  /* PROFILE PIC ZOOM */
+.rotate-border{
+  transition: transform 0.4s ease;
+}
+
+.rotate-border:hover{
+  transform: scale(1.08);
+}
+
 
 /* IMAGE COUNTER ROTATION */
 @keyframes counterSpin{
@@ -147,6 +156,16 @@ nav ul li a.active{
   font-size:11px;
   color:#555;
 }
+  /* MENU ZOOM EFFECT */
+nav ul li a{
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+nav ul li a:hover{
+  transform: scale(1.12);
+  color: var(--primary);
+}
+
 
 /* ===== HERO ===== */
 #home{
