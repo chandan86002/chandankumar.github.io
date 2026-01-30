@@ -173,28 +173,6 @@ section{
 
 h2{text-align:center;margin-bottom:30px;}
 
-/* ================= WORK ================= */
-.work-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:#fff;
-  padding:15px;
-  border-radius:14px;
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 28px rgba(0,0,0,.15);
-}
-
-.card img{width:100%;border-radius:10px;}
-
 /* ================= FOOTER ================= */
 footer{
   background:var(--dark);
@@ -203,11 +181,11 @@ footer{
   padding:20px;
 }
 
-/* ================= FLOATING SOCIAL ================= */
-.floating-social{
+/* ================= FLOATING ================= */
+.floating-social,
+.floating-nav{
   position:fixed;
   top:50%;
-  left:18px;
   transform:translateY(-50%);
   display:flex;
   flex-direction:column;
@@ -215,7 +193,11 @@ footer{
   z-index:999;
 }
 
-.floating-social a{
+.floating-social{left:18px;}
+.floating-nav{right:20px;}
+
+.floating-social a,
+.floating-nav a{
   width:42px;
   height:42px;
   border-radius:50%;
@@ -232,34 +214,6 @@ footer{
   background:var(--primary);
 }
 
-.floating-social img{width:18px;filter:invert(25%);}
-.floating-social a:hover img{filter:invert(100%);}
-
-/* ================= FLOATING NAV ================= */
-.floating-nav{
-  position:fixed;
-  top:50%;
-  right:20px;
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  z-index:999;
-}
-
-.floating-nav a{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  box-shadow:0 6px 16px rgba(0,0,0,.15);
-  transition:.4s;
-}
-
 .floating-nav a:hover{
   transform:translateX(-8px) scale(1.15);
   background:var(--primary);
@@ -271,27 +225,28 @@ footer{
   color:#fff;
 }
 
-/* ================= RESPONSIVE ================= */
-@media(max-width:900px){
-  #home{grid-template-columns:1fr;text-align:center;}
-  .social-links{justify-content:center;}
-}
+.floating-social img{width:18px;filter:invert(25%);}
+.floating-social a:hover img{filter:invert(100%);}
 
-@media(max-width:768px){
-  .floating-nav,.floating-social{display:none;}
-}
-  /* ===== SCROLL ANIMATION ===== */
+/* ================= SCROLL ANIMATION ================= */
 .reveal{
   opacity:0;
   transform:translateY(40px);
-  transition:all 0.9s ease;
+  transition:all .9s ease;
 }
-
 .reveal.active{
   opacity:1;
   transform:translateY(0);
 }
 
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  #home{grid-template-columns:1fr;text-align:center;}
+  .social-links{justify-content:center;}
+}
+@media(max-width:768px){
+  .floating-nav,.floating-social{display:none;}
+}
 </style>
 </head>
 
@@ -307,26 +262,18 @@ footer{
   </ul>
 </nav>
 
-<!-- MINI PROFILE -->
 <div class="mini-profile" id="miniProfile">
   <img src="images/profile.jpeg">
   <div>
     <h4>Chandan Kumar</h4>
-    <p><span id="mini-typing"></span></p>
+    <p id="mini-typing"></p>
   </div>
 </div>
 
 <section id="home" class="reveal">
   <div class="hero-text">
     <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
-    <p><span id="hero-typing"></span></p>
-
-    <div class="social-links">
-      <a href="https://www.instagram.com/ck_editxz" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
-      <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg"></a>
-      <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"></a>
-      <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-    </div>
+    <p id="hero-typing"></p>
   </div>
 
   <div class="hero-img">
@@ -344,13 +291,6 @@ footer{
 
 <footer>© 2026 Chandan Kumar</footer>
 
-<div class="floating-social">
-  <a href="https://www.instagram.com/ck_editxz" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
-  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg"></a>
-  <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"></a>
-  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
-</div>
-
 <div class="floating-nav">
   <a href="#home">🏠</a>
   <a href="#about">👤</a>
@@ -359,65 +299,50 @@ footer{
 </div>
 
 <script>
-const mini = document.getElementById("miniProfile");
-const navLinks = document.querySelectorAll("nav a");
-const navIcons = document.querySelectorAll(".floating-nav a");
-const sections = document.querySelectorAll("section");
+/* MINI PROFILE + ACTIVE NAV */
+const mini=document.getElementById("miniProfile");
+const navLinks=document.querySelectorAll("nav a");
+const navIcons=document.querySelectorAll(".floating-nav a");
+const sections=document.querySelectorAll("section");
 
 window.addEventListener("scroll",()=>{
-  mini.style.display = window.scrollY > 300 ? "flex" : "none";
+  mini.style.display=window.scrollY>300?"flex":"none";
 
   let current="";
   sections.forEach(sec=>{
-    if(window.scrollY >= sec.offsetTop - 200){
-      current = sec.id;
-    }
+    if(window.scrollY>=sec.offsetTop-200) current=sec.id;
   });
 
-  navLinks.forEach(a=>{
-    a.classList.toggle("active", a.getAttribute("href")==="#"+current);
-  });
-
-  navIcons.forEach(a=>{
-    a.classList.toggle("active", a.getAttribute("href")==="#"+current);
-  });
+  navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+  navIcons.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
 });
 
-function typingEffect(id){
+/* TYPING */
+function typing(id){
   const text="Video Editor & Graphic Designer";
-  let i=0;
-  const el=document.getElementById(id);
+  let i=0, el=document.getElementById(id);
   el.textContent="";
   (function type(){
     if(i<text.length){
-      el.textContent+=text.charAt(i++);
+      el.textContent+=text[i++];
       setTimeout(type,80);
     }
   })();
 }
+typing("hero-typing");
+typing("mini-typing");
 
-typingEffect("hero-typing");
-typingEffect("mini-typing");
-  <script>
 /* SCROLL REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll(){
+const reveals=document.querySelectorAll(".reveal");
+function reveal(){
   reveals.forEach(el=>{
-    const windowHeight = window.innerHeight;
-    const elementTop = el.getBoundingClientRect().top;
-    const revealPoint = 120;
-
-    if(elementTop < windowHeight - revealPoint){
+    if(el.getBoundingClientRect().top < window.innerHeight-120){
       el.classList.add("active");
     }
   });
 }
-
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll(); // run once on load
-</script>
-
+window.addEventListener("scroll",reveal);
+reveal();
 </script>
 
 </body>
