@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chandan Kumar | Portfolio</title>
 
 <style>
@@ -13,11 +14,7 @@
 }
 
 /* RESET */
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
   font-family:Arial, sans-serif;
@@ -25,6 +22,28 @@ body{
   color:#111;
   scroll-behavior:smooth;
 }
+
+/* ================= PAGE LOADER ================= */
+#loader{
+  position:fixed;
+  inset:0;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:5000;
+}
+
+.loader-circle{
+  width:70px;
+  height:70px;
+  border:6px solid #e5e7eb;
+  border-top:6px solid var(--primary);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg);}}
 
 /* ================= NAVBAR ================= */
 nav{
@@ -36,8 +55,14 @@ nav{
   justify-content:space-between;
   align-items:center;
   padding:14px 30px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
   z-index:1000;
+  animation:navFade 1s ease forwards;
+}
+
+@keyframes navFade{
+  from{opacity:0;transform:translateY(-20px);}
+  to{opacity:1;transform:translateY(0);}
 }
 
 nav ul{
@@ -50,43 +75,18 @@ nav ul li a{
   text-decoration:none;
   color:#333;
   font-size:14px;
-  display:inline-block;
-  transition:transform .3s ease, color .3s ease;
+  transition:.3s;
 }
 
 nav ul li a:hover{
-  transform:scale(1.15);
   color:var(--primary);
+  transform:scale(1.15);
 }
 
 nav ul li a.active{
   color:var(--primary);
   border-bottom:2px solid var(--accent);
 }
-
-/* ================= MINI PROFILE ================= */
-.mini-profile{
-  position:fixed;
-  top:75px;
-  left:20px;
-  background:#fff;
-  padding:10px 14px;
-  border-radius:14px;
-  display:none;
-  align-items:center;
-  gap:10px;
-  box-shadow:0 6px 16px rgba(0,0,0,.12);
-  z-index:999;
-}
-
-.mini-profile img{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-}
-
-.mini-profile h4{font-size:14px;}
-.mini-profile p{font-size:11px;color:#555;}
 
 /* ================= HERO ================= */
 #home{
@@ -102,42 +102,54 @@ nav ul li a.active{
 .hero-text span{color:var(--primary);}
 .hero-text p{font-size:18px;margin-top:10px;}
 
-.hero-text button{
+/* SOCIAL LINKS */
+.social-links{
   margin-top:20px;
-  width:150px;
-  padding:12px;
-  border:none;
-  background:var(--primary);
-  color:#fff;
-  border-radius:30px;
-  cursor:pointer;
+  display:flex;
+  gap:16px;
 }
 
-/* PROFILE IMAGE */
-.hero-img{text-align:center;}
-
-.profile-wrap{
-  width:300px;
-  height:300px;
+.social-links a{
+  width:38px;height:38px;
   border-radius:50%;
-  padding:6px;
-  background:conic-gradient(var(--accent),var(--primary),var(--accent));
+  background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  transition:transform 0.8s ease, box-shadow 0.8s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.12);
+  transition:.35s;
 }
 
-/* VERY SLOW ZOOM */
+.social-links a:hover{
+  transform:scale(1.15);
+  background:var(--primary);
+}
+
+.social-links img{
+  width:18px;
+  filter:invert(25%);
+}
+
+.social-links a:hover img{filter:invert(100%);}
+
+/* ================= PROFILE ================= */
+.hero-img{text-align:center;}
+
+.profile-wrap{
+  width:280px;height:280px;
+  border-radius:50%;
+  padding:6px;
+  background:conic-gradient(var(--accent),var(--primary),var(--accent));
+  transition:transform .9s ease, box-shadow .9s ease;
+}
+
 .profile-wrap:hover{
   transform:scale(1.06);
-  box-shadow:0 0 40px rgba(34,197,94,.4);
+  box-shadow:0 0 40px rgba(34,197,94,.45);
 }
 
-/* INNER IMAGE (SHAKE ONLY) */
 .profile-inner{
-  width:100%;
-  height:100%;
+  width:100%;height:100%;
   border-radius:50%;
   background:#fff;
   display:flex;
@@ -147,18 +159,50 @@ nav ul li a.active{
 }
 
 .profile-inner img{
-  width:92%;
-  height:92%;
+  width:92%;height:92%;
   border-radius:50%;
 }
 
-/* VERY SOFT SLOW SHAKE */
 @keyframes softShake{
   0%,100%{transform:translateX(0);}
-  92%{transform:translateX(-1px);}
-  96%{transform:translateX(1px);}
+  95%{transform:translateX(-1px);}
+  97%{transform:translateX(1px);}
 }
 
+/* ================= FLOATING NAV ================= */
+.floating-nav{
+  position:fixed;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  z-index:999;
+}
+
+.floating-nav a{
+  width:42px;height:42px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:.4s;
+}
+
+.floating-nav a:hover{
+  transform:translateX(-8px) scale(1.15);
+  background:var(--primary);
+  color:#fff;
+}
+
+.floating-nav a.active{
+  background:var(--accent);
+  color:#fff;
+}
 
 /* ================= SECTIONS ================= */
 section{
@@ -169,188 +213,29 @@ section{
 
 h2{text-align:center;margin-bottom:30px;}
 
-/* ================= WORK ================= */
-.work-container{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:#fff;
-  padding:15px;
-  border-radius:14px;
-  box-shadow:0 4px 12px rgba(0,0,0,.1);
-  transition:transform .3s ease, box-shadow .3s ease;
-}
-
-.card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 12px 28px rgba(0,0,0,.15);
-}
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
-/* ================= FOOTER ================= */
-footer{
-  background:var(--dark);
-  color:#fff;
-  text-align:center;
-  padding:20px;
-}
-
 /* ================= RESPONSIVE ================= */
 @media(max-width:900px){
   #home{
     grid-template-columns:1fr;
+    padding:120px 20px;
     text-align:center;
   }
-}
-  /* SOCIAL ICONS */
-.social-links{
-  margin-top:18px;
-  display:flex;
-  gap:16px;
+
+  .social-links{justify-content:center;}
 }
 
-.social-links a{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,0.12);
-  transition:transform 0.35s ease, background 0.35s ease;
-}
-
-.social-links a img{
-  width:18px;
-  filter:invert(25%);
-}
-
-/* HOVER EFFECT */
-.social-links a:hover{
-  transform:scale(1.15);
-  background:var(--primary);
-}
-
-.social-links a:hover img{
-  filter:invert(100%);
-}
-/* FLOATING SOCIAL ICONS */
-.floating-social{
-  position:fixed;
-  top:50%;
-  left:18px;
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  z-index:999;
-}
-
-.floating-social a{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  transition:transform 0.4s ease, background 0.4s ease;
-}
-
-.floating-social a img{
-  width:18px;
-  filter:invert(25%);
-}
-
-/* HOVER EFFECT */
-.floating-social a:hover{
-  transform:translateX(8px) scale(1.15);
-  background:var(--primary);
-}
-
-.floating-social a:hover img{
-  filter:invert(100%);
-}
-
-/* MOBILE HIDE (optional) */
 @media(max-width:768px){
-  .floating-social{
-    display:none;
-  }
+  .floating-nav{display:none;}
 }
-/* FLOATING NAVIGATION – RIGHT SIDE */
-.floating-nav{
-  position:fixed;
-  top:50%;
-  right:20px;   /* RIGHT SIDE */
-  transform:translateY(-50%);
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  z-index:999;
-}
-
-.floating-nav a{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  text-decoration:none;
-  box-shadow:0 6px 16px rgba(0,0,0,0.15);
-  transition:transform 0.4s ease, background 0.4s ease, color 0.4s ease;
-  color:#333;
-}
-
-/* HOVER EFFECT – MOVE LEFT */
-.floating-nav a:hover{
-  transform:translateX(-8px) scale(1.15);
-  background:var(--primary);
-  color:#fff;
-}
-
-/* ACTIVE SECTION */
-.floating-nav a.active{
-  background:var(--accent);
-  color:#fff;
-}
-
-/* MOBILE HIDE */
-@media(max-width:768px){
-  .floating-nav{
-    display:none;
-  }
-}
-
-/* ACTIVE SECTION HIGHLIGHT */
-.floating-nav a.active{
-  background:var(--accent);
-  color:#fff;
-}
-
-/* MOBILE HIDE */
-@media(max-width:768px){
-  .floating-nav{
-    display:none;
-  }
-}
-
 </style>
 </head>
 
 <body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-circle"></div>
+</div>
 
 <nav>
   <strong>Chandan Kumar</strong>
@@ -362,157 +247,52 @@ footer{
   </ul>
 </nav>
 
-<div class="mini-profile" id="miniProfile">
-  <img src="images/profile.jpeg">
-  <div>
-    <h4>Chandan Kumar</h4>
-    <p><span id="mini-typing"></span><span class="cursor">|</span></p>
-  </div>
-</div>
-
 <section id="home">
   <div class="hero-text">
-    <h1 class="animate-title">
-      Hi There,<br>I’m <span>Chandan Kumar</span>
-    </h1>
-    <p><span id="hero-typing"></span><span class="cursor">|</span></p>
-<div class="social-links">
-  <a href="https://www.instagram.com/ck_editxz?igsh=MTMzb205aG9yaHJqNA==" target="_blank" aria-label="Instagram">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
-  </a>
+    <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
+    <p id="typing"></p>
 
-  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
-  </a>
-
-  <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank" aria-label="YouTube">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg">
-  </a>
-
-  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" aria-label="LinkedIn">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
-  </a>
-</div>
-
-   
+    <div class="social-links">
+      <a href="https://instagram.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"></a>
+      <a href="https://facebook.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg"></a>
+      <a href="https://youtube.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg"></a>
+      <a href="https://linkedin.com" target="_blank"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"></a>
+    </div>
   </div>
 
   <div class="hero-img">
     <div class="profile-wrap">
-  <div class="profile-inner">
-    <img src="images/profile.jpeg" alt="Profile">
+      <div class="profile-inner">
+        <img src="images/profile.jpeg">
+      </div>
+    </div>
   </div>
+</section>
+
+<div class="floating-nav">
+  <a href="#home">🏠</a>
+  <a href="#about">👤</a>
+  <a href="#work">💼</a>
+  <a href="#contact">✉️</a>
 </div>
- </div>
-</section>
-
-<section id="about">
-  <h2>About Me</h2>
-  <p style="text-align:center;max-width:700px;margin:auto;">
-    I create professional video edits, posters, visiting cards and social media creatives.
-  </p>
-</section>
-
-<section id="work">
-  <h2>My Work</h2>
-  <div class="work-container">
-    <div class="card">
-      <img src="images/poster1.jpg">
-      <h3>Poster Design</h3>
-    </div>
-    <div class="card">
-      <img src="images/card_design.jpg">
-      <h3>Visiting Card</h3>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p style="text-align:center;">Email: your@email.com</p>
-</section>
-
-<footer>© 2026 Chandan Kumar</footer>
 
 <script>
-const mini=document.getElementById("miniProfile");
-const links=document.querySelectorAll("nav a");
-const sections=document.querySelectorAll("section");
-
-window.addEventListener("scroll",()=>{
-  mini.style.display=window.scrollY>300?"flex":"none";
-  let current="";
-  sections.forEach(sec=>{
-    if(pageYOffset>=sec.offsetTop-200) current=sec.id;
-  });
-  links.forEach(a=>{
-    a.classList.toggle("active",a.getAttribute("href")==="#"+current);
-  });
+/* LOADER */
+window.addEventListener("load",()=>{
+  document.getElementById("loader").style.display="none";
 });
 
-function typingEffect(id){
-  const text="Video Editor & Graphic Designer";
-  let i=0;
-  const el=document.getElementById(id);
-  el.textContent="";
-  function type(){
-    if(i<text.length){
-      el.textContent+=text.charAt(i);
-      i++;
-      setTimeout(type,80);
-    }
+/* TYPING */
+const text="Video Editor & Graphic Designer";
+let i=0;
+const typing=document.getElementById("typing");
+(function type(){
+  if(i<text.length){
+    typing.textContent+=text.charAt(i++);
+    setTimeout(type,80);
   }
-  type();
-}
-
-typingEffect("hero-typing");
-typingEffect("mini-typing");
-  <script>
-const navIcons = document.querySelectorAll(".floating-nav a");
-const pageSections = document.querySelectorAll("section");
-
-window.addEventListener("scroll", () => {
-  let current = "";
-
-  pageSections.forEach(sec => {
-    if (window.scrollY >= sec.offsetTop - 200) {
-      current = sec.id;
-    }
-  });
-
-  navIcons.forEach(icon => {
-    icon.classList.toggle(
-      "active",
-      icon.getAttribute("href") === "#" + current
-    );
-  });
-});
+})();
 </script>
-
-</script>
-<div class="floating-social">
-  <a href="https://www.instagram.com/ck_editxz?igsh=MTMzb205aG9yaHJqNA==" target="_blank" title="Instagram">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
-  </a>
-
-  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" title="Facebook">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
-  </a>
-
-  <a href="https://youtube.com/@ck__editxz?si=x8p4JKkj702ggDhO" target="_blank" title="YouTube">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg">
-  </a>
-
-  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" title="LinkedIn">
-    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
-  </a>
-</div>
-<div class="floating-nav">
-  <a href="#home" title="Home">🏠</a>
-  <a href="#about" title="About">👤</a>
-  <a href="#work" title="Work">💼</a>
-  <a href="#contact" title="Contact">✉️</a>
-</div>
 
 </body>
 </html>
