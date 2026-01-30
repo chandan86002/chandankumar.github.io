@@ -242,6 +242,51 @@ footer{
 .social-links a:hover img{
   filter:invert(100%);
 }
+/* FLOATING SOCIAL ICONS */
+.floating-social{
+  position:fixed;
+  top:50%;
+  left:18px;
+  transform:translateY(-50%);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  z-index:999;
+}
+
+.floating-social a{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 16px rgba(0,0,0,0.15);
+  transition:transform 0.4s ease, background 0.4s ease;
+}
+
+.floating-social a img{
+  width:18px;
+  filter:invert(25%);
+}
+
+/* HOVER EFFECT */
+.floating-social a:hover{
+  transform:translateX(8px) scale(1.15);
+  background:var(--primary);
+}
+
+.floating-social a:hover img{
+  filter:invert(100%);
+}
+
+/* MOBILE HIDE (optional) */
+@media(max-width:768px){
+  .floating-social{
+    display:none;
+  }
+}
 
 </style>
 </head>
@@ -364,6 +409,23 @@ function typingEffect(id){
 typingEffect("hero-typing");
 typingEffect("mini-typing");
 </script>
+<div class="floating-social">
+  <a href="https://instagram.com/YOUR_USERNAME" target="_blank" title="Instagram">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
+  </a>
+
+  <a href="https://facebook.com/YOUR_USERNAME" target="_blank" title="Facebook">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
+  </a>
+
+  <a href="https://youtube.com/@YOUR_USERNAME" target="_blank" title="YouTube">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg">
+  </a>
+
+  <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" title="LinkedIn">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
+  </a>
+</div>
 
 </body>
 </html>
