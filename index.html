@@ -287,11 +287,11 @@ footer{
     display:none;
   }
 }
-/* FLOATING NAVIGATION */
+/* FLOATING NAVIGATION – RIGHT SIDE */
 .floating-nav{
   position:fixed;
   top:50%;
-  left:80px; /* beside social icons */
+  right:20px;   /* RIGHT SIDE */
   transform:translateY(-50%);
   display:flex;
   flex-direction:column;
@@ -314,11 +314,24 @@ footer{
   color:#333;
 }
 
-/* HOVER EFFECT */
+/* HOVER EFFECT – MOVE LEFT */
 .floating-nav a:hover{
-  transform:translateX(8px) scale(1.15);
+  transform:translateX(-8px) scale(1.15);
   background:var(--primary);
   color:#fff;
+}
+
+/* ACTIVE SECTION */
+.floating-nav a.active{
+  background:var(--accent);
+  color:#fff;
+}
+
+/* MOBILE HIDE */
+@media(max-width:768px){
+  .floating-nav{
+    display:none;
+  }
 }
 
 /* ACTIVE SECTION HIGHLIGHT */
