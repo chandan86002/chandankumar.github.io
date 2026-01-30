@@ -209,6 +209,40 @@ footer{
     text-align:center;
   }
 }
+  /* SOCIAL ICONS */
+.social-links{
+  margin-top:18px;
+  display:flex;
+  gap:16px;
+}
+
+.social-links a{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,0.12);
+  transition:transform 0.35s ease, background 0.35s ease;
+}
+
+.social-links a img{
+  width:18px;
+  filter:invert(25%);
+}
+
+/* HOVER EFFECT */
+.social-links a:hover{
+  transform:scale(1.15);
+  background:var(--primary);
+}
+
+.social-links a:hover img{
+  filter:invert(100%);
+}
+
 </style>
 </head>
 
@@ -238,7 +272,25 @@ footer{
       Hi There,<br>I’m <span>Chandan Kumar</span>
     </h1>
     <p><span id="hero-typing"></span><span class="cursor">|</span></p>
-    <button onclick="location.href='#about'">About Me</button>
+<div class="social-links">
+  <a href="https://instagram.com/YOUR_USERNAME" target="_blank" aria-label="Instagram">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg">
+  </a>
+
+  <a href="https://facebook.com/YOUR_USERNAME" target="_blank" aria-label="Facebook">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg">
+  </a>
+
+  <a href="https://youtube.com/@YOUR_USERNAME" target="_blank" aria-label="YouTube">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/youtube.svg">
+  </a>
+
+  <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" aria-label="LinkedIn">
+    <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg">
+  </a>
+</div>
+
+   
   </div>
 
   <div class="hero-img">
