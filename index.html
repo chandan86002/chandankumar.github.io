@@ -273,9 +273,9 @@ footer{
     I’m <span>Chandan Kumar</span>
   </h1>
 
-  <p class="animate-sub">
-    <span id="typing-text"></span><span class="cursor">|</span>
-  </p>
+ <p class="animate-sub">
+  <span id="typing-text"></span><span class="cursor">|</span>
+</p>
 
   <button onclick="location.href='#about'">About Me</button>
 </div>
@@ -358,19 +358,23 @@ function typeEffect(){
 window.onload = typeEffect;
 </script>
 <script>
-const text = "Video Editor & Graphic Designer";
-let index = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  const text = "Video Editor & Graphic Designer";
+  const typingEl = document.getElementById("typing-text");
+  let index = 0;
 
-function typeEffect(){
-  if(index < text.length){
-    document.getElementById("typing-text").innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeEffect, 80);
+  function typeEffect() {
+    if (index < text.length) {
+      typingEl.textContent += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 80);
+    }
   }
-}
 
-window.onload = typeEffect;
+  typeEffect();
+});
 </script>
+
 
 </body>
 </html>
