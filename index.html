@@ -58,28 +58,34 @@ body{
     var(--primary),
     var(--accent)
   );
-  animation: spin 8s linear infinite;
+  animation: spin 10s linear infinite;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
+/* IMAGE STAYS STILL */
 .rotate-border img{
   width:280px;
   height:280px;
   border-radius:50%;
   background:#fff;
-  animation:none; /* stops image rotation */
+  animation: counterSpin 10s linear infinite;
 }
 
-/* rotation animation */
+/* BORDER ROTATION */
 @keyframes spin{
   100%{
     transform: rotate(360deg);
   }
 }
 
-
+/* IMAGE COUNTER ROTATION */
+@keyframes counterSpin{
+  100%{
+    transform: rotate(-360deg);
+  }
+}
 
 /* ===== NAVBAR ===== */
 nav{
