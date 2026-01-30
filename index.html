@@ -140,6 +140,36 @@ nav ul li a.active{
   border-radius:50%;
   border:6px solid var(--accent);
 }
+  /* TEXT ANIMATION */
+.animate-title{
+  opacity:0;
+  transform:translateY(30px);
+  animation:fadeUp 1s ease forwards;
+}
+
+.animate-sub{
+  font-size:18px;
+  color:#444;
+  margin-top:10px;
+}
+
+/* Typing cursor */
+.cursor{
+  margin-left:2px;
+  animation:blink 1s infinite;
+}
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@keyframes blink{
+  50%{opacity:0;}
+}
+
 
 /* ===== SECTIONS ===== */
 section{
@@ -238,12 +268,18 @@ footer{
 <!-- HERO -->
 <section id="home">
   <div class="hero-text">
-    <div class="title-box">
-      <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
-      <p>Video Editor & Graphic Designer</p>
-    </div>
-    <button onclick="location.href='#about'">About Me</button>
-  </div>
+  <h1 class="animate-title">
+    Hi There,<br>
+    I’m <span>Chandan Kumar</span>
+  </h1>
+
+  <p class="animate-sub">
+    <span id="typing-text"></span><span class="cursor">|</span>
+  </p>
+
+  <button onclick="location.href='#about'">About Me</button>
+</div>
+
 
   <div class="hero-img">
     <img src="images/profile.jpeg">
@@ -319,6 +355,20 @@ function typeEffect(){
     setTimeout(typeEffect,80);
   }
 }
+window.onload = typeEffect;
+</script>
+<script>
+const text = "Video Editor & Graphic Designer";
+let index = 0;
+
+function typeEffect(){
+  if(index < text.length){
+    document.getElementById("typing-text").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect, 80);
+  }
+}
+
 window.onload = typeEffect;
 </script>
 
