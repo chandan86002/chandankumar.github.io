@@ -91,38 +91,48 @@ nav ul li a.active{
 .hero-text span{color:var(--primary);}
 .hero-text p{font-size:18px;margin-top:10px;}
 
-/* ================= SOCIAL LINKS (LEFT) ================= */
-.social-links{
-  margin-top:20px;
+/* LEFT FLOATING SOCIAL ICONS */
+.floating-social{
+  position:fixed;
+  top:50%;
+  left:18px;
+  transform:translateY(-50%);
   display:flex;
-  gap:16px;
+  flex-direction:column;
+  gap:14px;
+  z-index:999;
 }
 
-.social-links a{
-  width:38px;
-  height:38px;
+.floating-social a{
+  width:42px;
+  height:42px;
   border-radius:50%;
   background:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:0 4px 12px rgba(0,0,0,.12);
-  transition:.3s;
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:.4s;
 }
 
-.social-links a:hover{
-  background:var(--primary);
-  transform:scale(1.15);
+.floating-social a:hover{
+  transform:translateX(8px) scale(1.15);
+  background:#1e40af;
 }
 
-.social-links svg{
+.floating-social svg{
   width:18px;
   height:18px;
   fill:#333;
 }
 
-.social-links a:hover svg{
+.floating-social a:hover svg{
   fill:#fff;
+}
+
+/* Hide on mobile */
+@media(max-width:768px){
+  .floating-social{display:none;}
 }
 
 /* ================= PROFILE IMAGE ================= */
@@ -344,6 +354,32 @@ function reveal(){
 window.addEventListener("scroll",reveal);
 reveal();
 </script>
+<!-- LEFT SIDE FLOATING SOCIAL ICONS -->
+<div class="floating-social">
+  <a href="https://www.instagram.com/ck_editxz" target="_blank" title="Instagram">
+    <svg viewBox="0 0 24 24">
+      <path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.facebook.com/share/1MLL7SupiW/?mibextid=wwXIfr" target="_blank" title="Facebook">
+    <svg viewBox="0 0 24 24">
+      <path d="M22 12a10 10 0 10-11.5 9.9v-7H8v-3h2.5V9.5a3.5 3.5 0 013.8-3.8H17v3h-2c-1 0-1.5.5-1.5 1.4V12H17l-.5 3h-3v7A10 10 0 0022 12z"/>
+    </svg>
+  </a>
+
+  <a href="https://youtube.com/@ck__editxz" target="_blank" title="YouTube">
+    <svg viewBox="0 0 24 24">
+      <path d="M21.6 7.2a3 3 0 00-2.1-2.1C17.9 4.7 12 4.7 12 4.7s-5.9 0-7.5.4A3 3 0 002.4 7.2 31.6 31.6 0 002.1 12a31.6 31.6 0 00.3 4.8 3 3 0 002.1 2.1c1.6.4 7.5.4 7.5.4s5.9 0 7.5-.4a3 3 0 002.1-2.1A31.6 31.6 0 0021.9 12z"/>
+    </svg>
+  </a>
+
+  <a href="https://www.linkedin.com/in/chandan-patel-a9b96625b" target="_blank" title="LinkedIn">
+    <svg viewBox="0 0 24 24">
+      <path d="M6.5 6.5a2 2 0 11-2-2 2 2 0 012 2zM5 8.5h3v11H5zM10 8.5h2.9V10h.1a3.2 3.2 0 012.9-1.6c3.1 0 3.7 2 3.7 4.7v6.4h-3v-5.7c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.8h-3z"/>
+    </svg>
+  </a>
+</div>
 
 </body>
 </html>
