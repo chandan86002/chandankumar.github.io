@@ -113,7 +113,7 @@ nav ul li a.active{
   cursor:pointer;
 }
 
-/* ================= PROFILE IMAGE ================= */
+/* PROFILE IMAGE */
 .hero-img{text-align:center;}
 
 .profile-wrap{
@@ -125,48 +125,40 @@ nav ul li a.active{
   display:flex;
   align-items:center;
   justify-content:center;
-  animation:shake 6s ease-in-out infinite;
-  transition:transform .4s ease, box-shadow .4s ease;
+  transition:transform 0.8s ease, box-shadow 0.8s ease;
 }
 
-.profile-wrap img{
-  width:280px;
-  height:280px;
+/* VERY SLOW ZOOM */
+.profile-wrap:hover{
+  transform:scale(1.06);
+  box-shadow:0 0 40px rgba(34,197,94,.4);
+}
+
+/* INNER IMAGE (SHAKE ONLY) */
+.profile-inner{
+  width:100%;
+  height:100%;
   border-radius:50%;
   background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:softShake 8s ease-in-out infinite;
 }
 
-/* Hover zoom + glow */
-.profile-wrap:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 35px rgba(34,197,94,.45);
+.profile-inner img{
+  width:92%;
+  height:92%;
+  border-radius:50%;
 }
 
-/* Soft shake */
-@keyframes shake{
+/* VERY SOFT SLOW SHAKE */
+@keyframes softShake{
   0%,100%{transform:translateX(0);}
-  95%{transform:translateX(-1px);}
-  97%{transform:translateX(1px);}
+  92%{transform:translateX(-1px);}
+  96%{transform:translateX(1px);}
 }
 
-/* ================= TEXT ================= */
-.animate-title{
-  opacity:0;
-  transform:translateY(30px);
-  animation:fadeUp 1s ease forwards;
-}
-
-.cursor{
-  margin-left:2px;
-  animation:blink 1s infinite;
-}
-
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0);}
-}
-@keyframes blink{
-  50%{opacity:0;}
-}
 
 /* ================= SECTIONS ================= */
 section{
@@ -251,9 +243,11 @@ footer{
 
   <div class="hero-img">
     <div class="profile-wrap">
-      <img src="images/profile.jpeg">
-    </div>
+  <div class="profile-inner">
+    <img src="images/profile.jpeg" alt="Profile">
   </div>
+</div>
+ </div>
 </section>
 
 <section id="about">
