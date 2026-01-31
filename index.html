@@ -702,13 +702,49 @@ body.theme-orange{
   --primary:#ea580c;
   --accent:#fb923c;
 }
+  .brand,
+.mini-name{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+/* Online indicator */
+.online-dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#22c55e;
+  box-shadow:0 0 0 3px rgba(34,197,94,0.18);
+  display:inline-block;
+  position:relative;
+}
+
+/* Optional pulse effect */
+.online-dot::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:50%;
+  border:2px solid rgba(34,197,94,0.35);
+  animation:pulse 1.6s ease-out infinite;
+}
+
+@keyframes pulse{
+  0%{ transform:scale(0.6); opacity:0.9; }
+  100%{ transform:scale(1.6); opacity:0; }
+}
+
 </style>
 </head>
 
 <body>
 
 <nav>
-  <strong>Chandan Kumar</strong>
+  <strong class="brand">
+  Chandan Kumar<span class="online-dot" aria-label="Online"></span>
+</strong>
+
   <ul>
     <li><a href="#home" class="active">Home</a></li>
     <li><a href="#about">About</a></li>
@@ -721,7 +757,10 @@ body.theme-orange{
 <div class="mini-profile" id="miniProfile">
   <img src="images/profile.jpeg" alt="Profile">
   <div>
-    <h4>Chandan Kumar</h4>
+    <h4 class="mini-name">
+  Chandan Kumar<span class="online-dot" aria-label="Online"></span>
+</h4>
+
     <p id="mini-typing"></p>
   </div>
 </div>
