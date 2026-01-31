@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Chandan Kumar | Portfolio</title>
 
 <style>
@@ -75,7 +75,6 @@ nav ul li:nth-child(1){animation-delay:.25s;}
 nav ul li:nth-child(2){animation-delay:.33s;}
 nav ul li:nth-child(3){animation-delay:.41s;}
 nav ul li:nth-child(4){animation-delay:.49s;}
-
 @keyframes navItems{ to{opacity:1; transform:translateY(0);} }
 
 nav ul li a{
@@ -183,7 +182,7 @@ nav ul li a.active{
   object-fit:cover;
 }
 
-/* ================= SECTIONS ================= */
+/* ================= SECTIONS (generic) ================= */
 section{
   padding:80px 20px;
   max-width:1100px;
@@ -270,10 +269,9 @@ h2{text-align:center;margin-bottom:30px;}
   nav{padding:12px 16px;}
   nav ul{gap:14px;}
 }
-  /* ================= ABOUT SECTION ================= */
-.about-section{
-  text-align:center;
-}
+
+/* ================= ABOUT SECTION ================= */
+.about-section{text-align:center;}
 
 .about-text{
   max-width:700px;
@@ -313,10 +311,9 @@ h2{text-align:center;margin-bottom:30px;}
   transform:translateY(-8px);
   box-shadow:0 14px 30px rgba(0,0,0,0.15);
 }
-/* ================= WORK SECTION ================= */
-.work-section{
-  text-align:center;
-}
+
+/* ================= WORK SECTION (FIXED) ================= */
+.work-section{text-align:center;}
 
 .work-subtitle{
   max-width:720px;
@@ -336,52 +333,67 @@ h2{text-align:center;margin-bottom:30px;}
   padding:22px;
   margin:22px auto;
   box-shadow:0 10px 24px rgba(0,0,0,0.09);
-  overflow:hidden;
 }
 
-.work-item.reverse .work-media{
-  order:2;
-}
-.work-item.reverse .work-content{
-  order:1;
-  text-align:left;
-}
+.work-item.reverse .work-media{order:2;}
+.work-item.reverse .work-content{order:1;}
 
 .work-media{
   border-radius:16px;
   overflow:hidden;
-  position:relative;
 }
 
 .work-media img,
-.work-media video{
+.work-media video,
+.work-media iframe{
   width:100%;
   height:320px;
   object-fit:cover;
   display:block;
+  border:none;
+  border-radius:16px;
   transition:transform .8s ease;
 }
 
-/* slow zoom on hover */
 .work-item:hover .work-media img,
-.work-item:hover .work-media video{
+.work-item:hover .work-media video,
+.work-item:hover .work-media iframe{
   transform:scale(1.04);
 }
 
 .work-content{
   text-align:left;
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:0 10px 22px rgba(0,0,0,0.08);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+
+.work-content:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(30,64,175,0.18);
 }
 
 .work-content h3{
   font-size:20px;
   color:var(--primary);
   margin-bottom:10px;
+  transition:text-shadow .35s ease;
 }
 
 .work-content p{
   color:#444;
   font-size:14px;
   line-height:1.7;
+  transition:text-shadow .35s ease;
+}
+
+.work-content:hover h3{
+  text-shadow:0 0 14px rgba(30,64,175,0.35);
+}
+.work-content:hover p{
+  text-shadow:0 0 10px rgba(34,197,94,0.28);
 }
 
 .work-tags{
@@ -400,21 +412,16 @@ h2{text-align:center;margin-bottom:30px;}
   border:1px solid rgba(30,64,175,0.15);
 }
 
-/* Mobile Responsive */
+/* Mobile */
 @media(max-width:900px){
-  .work-item{
-    grid-template-columns:1fr;
-    text-align:left;
-  }
+  .work-item{grid-template-columns:1fr;}
   .work-item.reverse .work-media,
-  .work-item.reverse .work-content{
-    order:unset;
-  }
+  .work-item.reverse .work-content{order:unset;}
   .work-media img,
-  .work-media video{
-    height:240px;
-  }
+  .work-media video,
+  .work-media iframe{height:240px;}
 }
+
 /* ===== IMAGE LIGHTBOX ===== */
 #lightbox{
   position:fixed;
@@ -446,86 +453,6 @@ h2{text-align:center;margin-bottom:30px;}
   from{transform:scale(.8);opacity:0;}
   to{transform:scale(1);opacity:1;}
 }
-.work-container img{
-  transition:.3s;
-}
-
-.work-container img:hover{
-  transform:scale(1.03);
-}
-/* ===== WORK SECTION ===== */
-.work-item{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
-  margin-bottom:80px;
-}
-
-.work-item.reverse{
-  direction:rtl;
-}
-.work-item.reverse > *{
-  direction:ltr;
-}
-
-.work-media iframe{
-  width:100%;
-  height:320px;
-  border-radius:16px;
-  border:none;
-  box-shadow:0 10px 30px rgba(0,0,0,.2);
-}
-
-.work-content h3{
-  font-size:22px;
-  margin-bottom:10px;
-}
-
-.work-content p{
-  font-size:16px;
-  color:#444;
-  line-height:1.6;
-}
-
-/* MOBILE VIEW */
-@media(max-width:900px){
-  .work-item{
-    grid-template-columns:1fr;
-    text-align:center;
-  }
-
-  .work-media iframe{
-    height:220px;
-  }
-}
-/* ===== TEXT HOVER GLOW ===== */
-.work-content{
-  background:#fff;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 10px 22px rgba(0,0,0,0.08);
-  transition:transform .35s ease, box-shadow .35s ease;
-}
-
-.work-content:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 40px rgba(30,64,175,0.18);
-}
-
-/* Glow on title + description */
-.work-content h3,
-.work-content .work-desc{
-  transition:text-shadow .35s ease, color .35s ease;
-}
-
-.work-content:hover h3{
-  text-shadow:0 0 14px rgba(30,64,175,0.35);
-}
-
-.work-content:hover .work-desc{
-  text-shadow:0 0 10px rgba(34,197,94,0.28);
-}
 
 /* ===== TYPING CURSOR ===== */
 .typing-cursor{
@@ -534,46 +461,7 @@ h2{text-align:center;margin-bottom:30px;}
   animation:blink 1s infinite;
   font-weight:700;
 }
-
-@keyframes blink{
-  50%{opacity:0;}
-}
-/* ===== Work Hover Glow (Text Card) ===== */
-.work-content{
-  background:#fff;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:0 10px 22px rgba(0,0,0,0.08);
-  transition:transform .35s ease, box-shadow .35s ease;
-}
-
-.work-content:hover{
-  transform:translateY(-4px);
-  box-shadow:0 16px 40px rgba(30,64,175,0.18);
-}
-
-.work-content h3,
-.work-content .work-desc{
-  transition:text-shadow .35s ease, color .35s ease;
-}
-
-.work-content:hover h3{
-  text-shadow:0 0 14px rgba(30,64,175,0.35);
-}
-
-.work-content:hover .work-desc{
-  text-shadow:0 0 10px rgba(34,197,94,0.28);
-}
-
-/* ===== Typing Cursor ===== */
-.typing-cursor{
-  display:inline-block;
-  margin-left:3px;
-  animation:blink 1s infinite;
-  font-weight:700;
-}
-
-@keyframes blink{ 50%{opacity:0;} }
+@keyframes blink{50%{opacity:0;}}
 
 /* ===== Sound Toggle UI ===== */
 .sound-toggle{
@@ -583,12 +471,10 @@ h2{text-align:center;margin-bottom:30px;}
   color:#444;
   font-size:14px;
 }
-
 .sound-toggle input{
   margin-right:8px;
   transform:translateY(1px);
 }
-
 </style>
 </head>
 
@@ -605,7 +491,7 @@ h2{text-align:center;margin-bottom:30px;}
 </nav>
 
 <div class="mini-profile" id="miniProfile">
-  <img src="images/profile.jpeg" alt="Profile">
+  <img src="images/profile.jpeg" alt="Profile" />
   <div>
     <h4>Chandan Kumar</h4>
     <p id="mini-typing"></p>
@@ -630,10 +516,10 @@ h2{text-align:center;margin-bottom:30px;}
 
 <section id="home" class="reveal">
   <div class="hero-text">
-    <h1>Hi There,<br>I’m <span>Chandan Kumar</span></h1>
+    <h1>Hi There,<br />I’m <span>Chandan Kumar</span></h1>
     <p id="hero-typing"></p>
 
-    <!-- ✅ ICONS BELOW THE TEXT (BACK AGAIN) -->
+    <!-- ✅ ICONS BELOW THE TEXT -->
     <div class="hero-social">
       <a href="https://www.instagram.com/ck_editxz" target="_blank" title="Instagram" rel="noopener">
         <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zm0 6.2A2.4 2.4 0 1114.4 12 2.4 2.4 0 0112 14.4zM17.6 6.7a.9.9 0 11-.9-.9.9.9 0 01.9.9z"/></svg>
@@ -653,7 +539,7 @@ h2{text-align:center;margin-bottom:30px;}
   <div class="hero-img">
     <div class="profile-wrap">
       <div class="profile-inner">
-        <img src="images/profile.jpeg" alt="Profile Photo">
+        <img src="images/profile.jpeg" alt="Profile Photo" />
       </div>
     </div>
   </div>
@@ -693,32 +579,28 @@ h2{text-align:center;margin-bottom:30px;}
 
 <section id="work" class="reveal work-section">
   <h2>My Work</h2>
+
   <div class="sound-toggle">
-  <label>
-    <input type="checkbox" id="soundToggle">
-    Typing sound
-  </label>
-</div>
+    <label>
+      <input type="checkbox" id="soundToggle" />
+      Typing sound
+    </label>
+  </div>
 
   <p class="work-subtitle">Some of my posters, designs, and video edits for clients.</p>
 
   <!-- ITEM 1 (Image Left, Text Right) -->
   <div class="work-item">
     <div class="work-media">
-      <img src="images/poster1.jpg" onclick="openLightbox(this)" style="cursor:pointer;">
-
+      <img src="images/poster1.jpg" onclick="openLightbox(this)" style="cursor:pointer;" alt="Poster 1" />
     </div>
-
     <div class="work-content">
-      <h3>Antique Choker Set Poster Design</h3>
-      <p class="work-desc typing-text">
-  I designed this jewellery promotional poster for Rajvansh Jewellers with a premium and elegant look.
-  For creating this design, I used Canva for layout and typography, 
-  took inspiration from Pinterest, and added creative finishing touches using Alight Motion.
-  This poster highlights the royal antique choker set with a rich background, 
-  clean branding, and attractive product presentation.
-</p>
-
+      <h3 class="typing-title">Antique Choker Set Poster Design</h3>
+      <p class="typing-desc">
+        I designed this jewellery promotional poster for Rajvansh Jewellers with a premium and elegant look.
+        For creating this design, I used Canva for layout and typography, took inspiration from Pinterest,
+        and added creative finishing touches using Alight Motion.
+      </p>
       <div class="work-tags">
         <span>Poster</span><span>Social Media</span><span>Canva</span>
       </div>
@@ -728,119 +610,130 @@ h2{text-align:center;margin-bottom:30px;}
   <!-- ITEM 2 (Image Right, Text Left) -->
   <div class="work-item reverse">
     <div class="work-media">
-      <img src="images/poster2.jpg" onclick="openLightbox(this)" style="cursor:pointer;">
+      <img src="images/poster2.jpg" onclick="openLightbox(this)" style="cursor:pointer;" alt="Poster 2" />
     </div>
-
     <div class="work-content">
-      <h3>A Forever Promise Starts Here</h3>
-      <p class="work-desc typing-text">
-  I created this promotional poster for Rajvansh Jewellers with a premium and elegant look. 
-  The spotlight effect and rich background highlight the ring beautifully.
-  This design was made using Canva, with inspiration from Pinterest, 
-  and finishing effects added through Alight Motion.
-</p>
-
-
+      <h3 class="typing-title">A Forever Promise Starts Here</h3>
+      <p class="typing-desc">
+        I created this promotional poster for Rajvansh Jewellers with a premium and elegant look.
+        The spotlight effect and rich background highlight the ring beautifully.
+        This design was made using Canva, with inspiration from Pinterest, and finishing effects added through Alight Motion.
+      </p>
       <div class="work-tags">
-        <span>Poster</span><span>Branding</span><span>Photoshop</span>
+        <span>Poster</span><span>Branding</span><span>Canva</span>
       </div>
     </div>
   </div>
 
-  <!-- ITEM 3 (Video Example) -->
+  <!-- ITEM 3 (Local Video) -->
   <div class="work-item">
     <div class="work-media">
-  <video id="myVideo" controls poster="images/reel1poster.jpg">
-    <source src="videos/reel1.mp4" type="video/mp4">
-    Your browser does not support video.
-  </video>
-</div>
-
-
+      <video id="myVideo" controls poster="images/reel1poster.jpg">
+        <source src="videos/reel1.mp4" type="video/mp4" />
+        Your browser does not support video.
+      </video>
+    </div>
     <div class="work-content">
-      <h3>Instagram Reel Edit for a Client</h3>
-      <p class="work-desc typing-text">
+      <h3 class="typing-title">Instagram Reel Edit for a Client</h3>
+      <p class="typing-desc">
         Short reel edit with smooth transitions, beats sync, and clean text overlays.
         Made to increase engagement and watch time.
       </p>
-
       <div class="work-tags">
         <span>Video</span><span>Reel</span><span>CapCut</span>
       </div>
     </div>
   </div>
-  <!-- VIDEO 1 -->
+
+  <!-- VIDEO 1 (YouTube) -->
   <div class="work-item">
     <div class="work-media">
-      <iframe 
-        src="https://www.youtube.com/embed/6qpJ0dgWH-I?si=q7D4RwawS2djeR1U"
-        allowfullscreen>
+      <iframe
+        src="https://www.youtube.com/embed/6qpJ0dgWH-I"
+        allowfullscreen
+        title="YouTube Video 1">
       </iframe>
     </div>
-
     <div class="work-content">
-      <h3>The Garden Of Chamba - Himalayan_Healer_ YT</h3>
-      <p class="work-desc typing-text">
-        This video showcases my professional video editing skills including
-        smooth transitions, color grading, and sound sync.
+      <h3 class="typing-title">The Garden Of Chamba - Himalayan_Healer_ YT</h3>
+      <p class="typing-desc">
+        This video showcases my professional video editing skills including smooth transitions,
+        color grading, and sound sync.
       </p>
-       <div class="work-tags">
-        <span>Video</span><span>Capcut</span><span>Alight Motion</span>
+      <div class="work-tags">
+        <span>Video</span><span>CapCut</span><span>Alight Motion</span>
       </div>
     </div>
   </div>
 
-  <!-- VIDEO 2 -->
+  <!-- VIDEO 2 (YouTube) -->
   <div class="work-item reverse">
     <div class="work-media">
-      <iframe 
-        src="https://www.youtube.com/embed/_JrsHfgQ8g0?si=R9r0a0xa6juAsSzl"
-        allowfullscreen>
+      <iframe
+        src="https://www.youtube.com/embed/_JrsHfgQ8g0"
+        allowfullscreen
+        title="YouTube Video 2">
       </iframe>
     </div>
-
     <div class="work-content">
-      <h3>leo Horoscope - ALPANA AstroTarot</h3>
-     <p class="work-desc typing-text">
-        A creative edit made for social media engagement with dynamic cuts
-        and modern visual effects.
+      <h3 class="typing-title">Leo Horoscope - ALPANA AstroTarot</h3>
+      <p class="typing-desc">
+        A creative edit made for social media engagement with dynamic cuts and modern visual effects.
       </p>
-       <div class="work-tags">
-        <span>Capcut</span><span>Canva</span><span>Node Video</span>
+      <div class="work-tags">
+        <span>CapCut</span><span>Canva</span><span>Node Video</span>
       </div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="reveal"><h2>Contact</h2></section>
+<section id="contact" class="reveal">
+  <h2>Contact</h2>
+</section>
 
-<footer style="background:var(--dark);color:#fff;text-align:center;padding:20px;">© 2026 Chandan Kumar</footer>
+<footer style="background:var(--dark);color:#fff;text-align:center;padding:20px;">
+  © 2026 Chandan Kumar
+</footer>
 
 <!-- RIGHT SIDE NAV ICONS -->
 <div class="floating-nav">
-  <a href="#home" title="Home"><svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3z"/></svg></a>
-  <a href="#about" title="About"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg></a>
-  <a href="#work" title="Work"><svg viewBox="0 0 24 24"><path d="M9 3h6v2H9V3zm-4 4h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg></a>
-  <a href="#contact" title="Contact"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v10h16V7H4zm1 1h14l-7 5-7-5z"/></svg></a>
+  <a href="#home" title="Home">
+    <svg viewBox="0 0 24 24"><path d="M12 3l9 8h-3v10h-5v-6H11v6H6V11H3z"/></svg>
+  </a>
+  <a href="#about" title="About">
+    <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 100-10 5 5 0 000 10zm0 2c-4 0-8 2-8 5v3h16v-3c0-3-4-5-8-5z"/></svg>
+  </a>
+  <a href="#work" title="Work">
+    <svg viewBox="0 0 24 24"><path d="M9 3h6v2H9V3zm-4 4h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V9a2 2 0 012-2z"/></svg>
+  </a>
+  <a href="#contact" title="Contact">
+    <svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm2 2v10h16V7H4zm1 1h14l-7 5-7-5z"/></svg>
+  </a>
+</div>
+
+<!-- IMAGE LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span class="close">&times;</span>
+  <img id="lightbox-img" alt="Full Image" />
 </div>
 
 <script>
 /* MINI PROFILE + ACTIVE NAV */
-const mini=document.getElementById("miniProfile");
-const navLinks=document.querySelectorAll("nav a");
-const navIcons=document.querySelectorAll(".floating-nav a");
-const sections=document.querySelectorAll("section");
+const mini = document.getElementById("miniProfile");
+const navLinks = document.querySelectorAll("nav a");
+const navIcons = document.querySelectorAll(".floating-nav a");
+const sections = document.querySelectorAll("section");
 
 window.addEventListener("scroll",()=>{
-  mini.style.display=window.scrollY>300?"flex":"none";
+  mini.style.display = window.scrollY > 300 ? "flex" : "none";
 
-  let current="";
+  let current = "";
   sections.forEach(sec=>{
-    if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+    if(window.scrollY >= sec.offsetTop - 200) current = sec.id;
   });
 
-  navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
-  navIcons.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+  navLinks.forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+current));
+  navIcons.forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+current));
 });
 
 /* TYPING (hero + mini) */
@@ -859,7 +752,7 @@ typing("hero-typing");
 typing("mini-typing");
 
 /* SCROLL REVEAL */
-const reveals=document.querySelectorAll(".reveal");
+const reveals = document.querySelectorAll(".reveal");
 function reveal(){
   reveals.forEach(el=>{
     if(el.getBoundingClientRect().top < window.innerHeight-120){
@@ -869,24 +762,16 @@ function reveal(){
 }
 window.addEventListener("scroll",reveal);
 reveal();
-</script>
-<script async src="https://www.instagram.com/embed.js"></script>
-<!-- IMAGE LIGHTBOX -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span class="close">&times;</span>
-  <img id="lightbox-img">
-</div>
-<script>
+
+/* LIGHTBOX */
 function openLightbox(img){
   document.getElementById("lightbox").style.display="flex";
   document.getElementById("lightbox-img").src = img.src;
 }
-
 function closeLightbox(){
   document.getElementById("lightbox").style.display="none";
 }
-</script>
-<script>
+
 /* ===== Typing sound (OFF by default) ===== */
 let soundEnabled = false;
 const soundToggle = document.getElementById("soundToggle");
@@ -896,7 +781,7 @@ if(soundToggle){
   });
 }
 
-/* Small “tick” sound using WebAudio (no mp3 needed) */
+/* Small “tick” sound (no mp3 needed) */
 let audioCtx = null;
 function tickSound(){
   if(!soundEnabled) return;
@@ -916,7 +801,7 @@ function tickSound(){
   o.stop(audioCtx.currentTime + 0.02);
 }
 
-/* Type function */
+/* Type one element (title/desc) */
 function typeElement(el, speed=18){
   return new Promise((resolve)=>{
     const full = el.getAttribute("data-full") || el.textContent.trim();
@@ -944,7 +829,7 @@ function typeElement(el, speed=18){
   });
 }
 
-/* ===== Stagger typing: Title → Description (on scroll) ===== */
+/* ===== Work typing on scroll ===== */
 document.addEventListener("DOMContentLoaded", ()=>{
   const workBlocks = document.querySelectorAll(".work-item .work-content");
 
@@ -957,7 +842,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const desc  = entry.target.querySelector(".typing-desc");
 
         if(title) await typeElement(title, 18);
-        if(desc)  await typeElement(desc, 14);
+        if(desc)  await typeElement(desc, 12);
       }
     }
   }, { threshold: 0.35 });
@@ -965,7 +850,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
   workBlocks.forEach(b=>observer.observe(b));
 });
 </script>
-
 
 </body>
 </html>
