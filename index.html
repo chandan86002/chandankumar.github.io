@@ -813,6 +813,59 @@ h2{text-align:center;margin-bottom:30px;}
 .close-btn:hover{
   transform:scale(1.04);
 }
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:none;
+  background:#111;
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  transition:transform .3s ease, background .3s ease;
+  z-index:9999;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.1);
+}
+
+/* ===== DARK MODE ===== */
+body.dark{
+  background:#0f172a;
+  color:#e5e7eb;
+}
+
+body.dark nav,
+body.dark .mini-profile,
+body.dark .about-card,
+body.dark .work-item,
+body.dark .client-card,
+body.dark .contact-form{
+  background:#020617;
+  color:#e5e7eb;
+}
+
+body.dark p,
+body.dark label{
+  color:#cbd5f5;
+}
+
+body.dark h2,
+body.dark h3,
+body.dark strong{
+  color:#60a5fa;
+}
+
+body.dark .theme-toggle{
+  background:#fff;
+  color:#000;
+}
 
 </style>
 </head>
@@ -1296,7 +1349,24 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+<button id="themeToggle" class="theme-toggle" title="Change Theme">
+  🌙
+</button>
 
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  // Change icon
+  if(document.body.classList.contains("dark")){
+    toggleBtn.textContent = "☀️";
+  }else{
+    toggleBtn.textContent = "🌙";
+  }
+});
+</script>
 
 </body>
 </html>
