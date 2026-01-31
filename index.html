@@ -886,6 +886,11 @@ body, nav, section, footer,
   transition-duration: .45s;
   transition-timing-function: ease;
 }
+/* ===== ORANGE THEME ===== */
+body.theme-orange{
+  --primary:#ea580c;   /* orange */
+  --accent:#fb923c;    /* light orange */
+}
 
 </style>
 </head>
@@ -1373,19 +1378,37 @@ document.addEventListener("DOMContentLoaded", () => {
   🎨
 </button>
 <script>
+const body = document.body;
 const themeBtn = document.getElementById("themeToggle");
 
-themeBtn.addEventListener("click", ()=>{
-  document.body.classList.toggle("purple-theme");
+/* All themes */
+const themes = ["blue", "purple", "orange"];
+let index = 0;
 
-  // Change icon
-  if(document.body.classList.contains("purple-theme")){
+function applyTheme(){
+  body.classList.remove("theme-purple","theme-orange");
+
+  if(themes[index] === "purple"){
+    body.classList.add("theme-purple");
     themeBtn.textContent = "💜";
-  }else{
+  }
+  else if(themes[index] === "orange"){
+    body.classList.add("theme-orange");
+    themeBtn.textContent = "🧡";
+  }
+  else{
     themeBtn.textContent = "💙";
   }
+}
+
+themeBtn.addEventListener("click", ()=>{
+  index = (index + 1) % themes.length;
+  applyTheme();
 });
+
+applyTheme();
 </script>
+
 
 </body>
 </html>
