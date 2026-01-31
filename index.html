@@ -862,6 +862,30 @@ body.purple-theme{
   --primary:#7c3aed;   /* purple */
   --accent:#a855f7;
 }
+/* Smooth theme change */
+body, nav, section, footer,
+.work-item, .work-content, .about-card, .client-card,
+.theme-toggle, .floating-nav a, .floating-social a, .hero-social a,
+.send-btn, .yt-btn, input, textarea{
+  transition: 
+    background-color .45s ease,
+    color .45s ease,
+    border-color .45s ease,
+    box-shadow .45s ease,
+    transform .35s ease;
+}
+
+/* For icon color that uses currentColor */
+.floating-nav svg,
+.hero-social svg,
+.floating-social svg{
+  transition: fill .45s ease;
+}
+*{
+  transition-property: background-color, color, border-color, box-shadow;
+  transition-duration: .45s;
+  transition-timing-function: ease;
+}
 
 </style>
 </head>
