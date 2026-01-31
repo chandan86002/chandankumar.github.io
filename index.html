@@ -533,6 +533,92 @@ h2{text-align:center;margin-bottom:30px;}
 @keyframes blink{
   50%{opacity:0;}
 }
+/* ================= CLIENTS SECTION ================= */
+.clients-section{
+  text-align:center;
+}
+
+.clients-subtitle{
+  max-width:720px;
+  margin:0 auto 34px;
+  color:#555;
+  font-size:15px;
+  line-height:1.6;
+}
+
+.clients-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+}
+
+.client-card{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:0 10px 24px rgba(0,0,0,0.09);
+  transition:transform .35s ease, box-shadow .35s ease;
+  text-align:left;
+}
+
+.client-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(30,64,175,0.16);
+}
+
+.client-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
+}
+
+.client-logo{
+  width:46px;
+  height:46px;
+  border-radius:12px;
+  background:rgba(30,64,175,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700;
+  color:var(--primary);
+}
+
+.client-name{
+  font-size:16px;
+  color:#111;
+  margin:0;
+}
+
+.client-role{
+  font-size:12px;
+  color:#666;
+  margin-top:2px;
+}
+
+.client-desc{
+  font-size:13px;
+  color:#444;
+  line-height:1.6;
+  margin-top:8px;
+}
+
+.client-tags{
+  margin-top:12px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.client-tags span{
+  font-size:12px;
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(34,197,94,0.10);
+  color:#0f172a;
+  border:1px solid rgba(34,197,94,0.18);
+}
 
 </style>
 </head>
@@ -745,6 +831,62 @@ h2{text-align:center;margin-bottom:30px;}
       </p>
        <div class="work-tags">
         <span>Capcut</span><span>Canva</span><span>Node Video</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="clients" class="reveal clients-section">
+  <h2>Clients</h2>
+  <p class="clients-subtitle">
+    Some brands and creators I’ve worked with for posters, reels, and video edits.
+  </p>
+
+  <div class="clients-grid">
+    <div class="client-card">
+      <div class="client-top">
+        <div class="client-logo">RJ</div>
+        <div>
+          <h3 class="client-name">Rajvansh Jewellers</h3>
+          <div class="client-role">Posters • Product creatives</div>
+        </div>
+      </div>
+      <p class="client-desc">
+        Premium jewellery posters, festive creatives, and product highlights for social media.
+      </p>
+      <div class="client-tags">
+        <span>Canva</span><span>Pinterest</span><span>Branding</span>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-top">
+        <div class="client-logo">AA</div>
+        <div>
+          <h3 class="client-name">Alpana AstroTarot</h3>
+          <div class="client-role">Video edits • Shorts/Reels</div>
+        </div>
+      </div>
+      <p class="client-desc">
+        Engagement-focused edits with clean cuts, text overlays, and modern visual effects.
+      </p>
+      <div class="client-tags">
+        <span>CapCut</span><span>Canva</span><span>Node Video</span>
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="client-top">
+        <div class="client-logo">HH</div>
+        <div>
+          <h3 class="client-name">Himalayan Healer</h3>
+          <div class="client-role">YouTube video editing</div>
+        </div>
+      </div>
+      <p class="client-desc">
+        Long-form edits with smooth transitions, color grading, and sound sync.
+      </p>
+      <div class="client-tags">
+        <span>CapCut</span><span>Alight Motion</span><span>Storytelling</span>
       </div>
     </div>
   </div>
