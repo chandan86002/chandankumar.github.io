@@ -866,6 +866,33 @@ body.dark .theme-toggle{
   background:#fff;
   color:#000;
 }
+/* ===== THEME TOGGLE BUTTON ===== */
+.theme-toggle{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:46px;
+  height:46px;
+  border-radius:50%;
+  border:none;
+  background:var(--primary);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  transition:transform .3s ease, background .3s ease;
+  z-index:9999;
+}
+
+.theme-toggle:hover{
+  transform:scale(1.1);
+}
+
+/* ===== PURPLE THEME ===== */
+body.purple-theme{
+  --primary:#7c3aed;   /* purple */
+  --accent:#a855f7;
+}
 
 </style>
 </head>
@@ -1364,6 +1391,23 @@ toggleBtn.addEventListener("click", () => {
     toggleBtn.textContent = "☀️";
   }else{
     toggleBtn.textContent = "🌙";
+  }
+});
+</script>
+<button id="themeToggle" class="theme-toggle" title="Change Theme">
+  🎨
+</button>
+<script>
+const themeBtn = document.getElementById("themeToggle");
+
+themeBtn.addEventListener("click", ()=>{
+  document.body.classList.toggle("purple-theme");
+
+  // Change icon
+  if(document.body.classList.contains("purple-theme")){
+    themeBtn.textContent = "💜";
+  }else{
+    themeBtn.textContent = "💙";
   }
 });
 </script>
