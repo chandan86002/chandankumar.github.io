@@ -891,6 +891,22 @@ body.theme-orange{
   --primary:#ea580c;   /* orange */
   --accent:#fb923c;    /* light orange */
 }
+/* Smooth color change everywhere */
+body, nav, section, footer, .about-card, .work-item, .client-card, .contact-form, .send-btn, a, button {
+  transition: background-color .35s ease, color .35s ease, border-color .35s ease, box-shadow .35s ease;
+}
+
+/* PURPLE THEME */
+body.theme-purple{
+  --primary:#7c3aed;  /* purple */
+  --accent:#a78bfa;   /* light purple */
+}
+
+/* ORANGE THEME */
+body.theme-orange{
+  --primary:#ea580c;  /* orange */
+  --accent:#fb923c;   /* light orange */
+}
 
 </style>
 </head>
@@ -1376,12 +1392,10 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <button id="themeToggle" class="theme-toggle" title="Change Theme">
   🎨
-</button>
-<script>
+</button><script>
 const body = document.body;
 const themeBtn = document.getElementById("themeToggle");
 
-/* All themes */
 const themes = ["blue", "purple", "orange"];
 let index = 0;
 
@@ -1391,12 +1405,10 @@ function applyTheme(){
   if(themes[index] === "purple"){
     body.classList.add("theme-purple");
     themeBtn.textContent = "💜";
-  }
-  else if(themes[index] === "orange"){
+  } else if(themes[index] === "orange"){
     body.classList.add("theme-orange");
     themeBtn.textContent = "🧡";
-  }
-  else{
+  } else {
     themeBtn.textContent = "💙";
   }
 }
@@ -1408,6 +1420,7 @@ themeBtn.addEventListener("click", ()=>{
 
 applyTheme();
 </script>
+
 
 
 </body>
