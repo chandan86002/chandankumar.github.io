@@ -1261,22 +1261,29 @@ if(form){
   form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    // show popup first
+    // show popup
     popup.style.display = "flex";
 
-    // submit after short delay
+    // submit form in background
     setTimeout(() => {
       form.submit();
-    }, 900);
+    }, 800);
   });
 }
 
 if(closePopup){
   closePopup.addEventListener("click", ()=>{
     popup.style.display = "none";
+
+    // ✅ redirect back to website (Home section)
+    window.location.href = "#home";
+
+    // OR reload full website (use only one)
+    // window.location.reload();
   });
 }
 </script>
+
 
 </body>
 </html>
