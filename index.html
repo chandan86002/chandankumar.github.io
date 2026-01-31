@@ -1082,61 +1082,54 @@ h2{text-align:center;margin-bottom:30px;}
 
 <section id="contact" class="reveal">
   <h2>Contact</h2>
-
-  <form 
-  action="https://formsubmit.co/chandankumarpatel862002@gmail.com" 
-  method="POST">
-
-  <!-- Disable FormSubmit default page -->
+<form
+  id="contactForm"
+  action="https://formsubmit.co/chandankumarpatel862002@gmail.com"
+  method="POST"
+>
+  <!-- Disable FormSubmit captcha -->
   <input type="hidden" name="_captcha" value="false">
 
-  <!-- ✅ Redirect BACK to your website -->
+  <!-- Redirect back to your website after submit -->
   <input type="hidden" name="_next" value="https://chandan86002.github.io/#contact">
 
+  <!-- Email subject -->
+  <input type="hidden" name="_subject" value="New Contact Form Submission">
 
-
-    <!-- Disable captcha (free) -->
-    <input type="hidden" name="_captcha" value="false">
-
-   
-
-    <!-- Email subject -->
-    <input type="hidden" name="_subject" value="New Contact Form Submission">
-
-    <div class="form-grid">
-      <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" name="Name" placeholder="Enter your name" required>
-      </div>
-
-      <div class="form-group">
-        <label>Contact Number</label>
-        <input type="tel" name="Phone" placeholder="Enter mobile number" required>
-      </div>
-
-      <div class="form-group">
-        <label>Email ID</label>
-        <input type="email" name="Email" placeholder="Enter email" required>
-      </div>
-
-      <div class="form-group full">
-        <label>Reason to Contact</label>
-        <textarea name="Reason" rows="5" placeholder="Write your message..." required></textarea>
-      </div>
+  <div class="form-grid">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" name="Name" placeholder="Enter your name" required>
     </div>
 
-    <button type="submit" class="send-btn">Submit</button>
-  </form>
-</section>
+    <div class="form-group">
+      <label>Contact Number</label>
+      <input type="tel" name="Phone" placeholder="Enter mobile number" required>
+    </div>
+
+    <div class="form-group">
+      <label>Email ID</label>
+      <input type="email" name="Email" placeholder="Enter email" required>
+    </div>
+
+    <div class="form-group full">
+      <label>Reason to Contact</label>
+      <textarea name="Reason" rows="5" placeholder="Write your message..." required></textarea>
+    </div>
+  </div>
+
+  <button type="submit" class="send-btn">Submit</button>
+</form>
 
 <!-- Popup -->
-<div id="thankPopup" class="thank-popup">
+<div id="thankPopup" class="thank-popup" style="display:none;">
   <div class="thank-box">
     <h3>✅ Thank you for reaching out!</h3>
     <p>Your message has been submitted successfully.</p>
-    <button id="closePopup" class="close-btn">OK</button>
+    <button id="closePopup" class="close-btn" type="button">OK</button>
   </div>
 </div>
+
 
 
 <footer style="background:var(--dark);color:#fff;text-align:center;padding:20px;">© 2026 Chandan Kumar</footer>
@@ -1259,35 +1252,34 @@ document.addEventListener("DOMContentLoaded", ()=>{
 });
 </script>
 <script>
-const form = document.getElementById("contactForm");
-const popup = document.getElementById("thankPopup");
-const closePopup = document.getElementById("closePopup");
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("contactForm");
+  const popup = document.getElementById("thankPopup");
+  const closePopup = document.getElementById("closePopup");
 
-if(form){
-  form.addEventListener("submit", function(e){
+  if (!form || !popup || !closePopup) return;
+
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // show popup
     popup.style.display = "flex";
 
-    // submit form in background
+    // disable button to avoid double submit
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = true;
+
+    // submit after short delay
     setTimeout(() => {
       form.submit();
     }, 800);
   });
-}
 
-if(closePopup){
-  closePopup.addEventListener("click", ()=>{
+  closePopup.addEventListener("click", () => {
     popup.style.display = "none";
-
-    // ✅ redirect back to website (Home section)
-    window.location.href = "#home";
-
-    // OR reload full website (use only one)
-    // window.location.reload();
+    window.location.hash = "home"; // goes to #home
   });
-}
+});
 </script>
 
 
