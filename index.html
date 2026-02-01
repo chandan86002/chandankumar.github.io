@@ -839,6 +839,57 @@ nav:hover{
 .client-card:hover .client-photo{
   transform: scale(1.07);
 }
+/* ========= FIX BLUR: DON'T SCALE TEXT CONTAINERS ========= */
+
+/* 1) REMOVE scale from big containers (text blur fix) */
+.about-card:hover,
+.work-item:hover,
+.client-card:hover{
+  transform: translateY(-10px);   /* no scale */
+}
+
+/* 2) Keep smooth hover look with shadow only */
+.about-card,
+.work-item,
+.client-card{
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform .35s ease, box-shadow .35s ease;
+}
+
+/* 3) Zoom ONLY images/media (no text blur) */
+.profile-wrap:hover{
+  transform: scale(1.12); /* profile image only is ok */
+}
+
+/* Work media zoom only */
+.work-media img,
+.work-media video{
+  transform: scale(1);
+  transition: transform .9s ease;
+}
+.work-item:hover .work-media img,
+.work-item:hover .work-media video{
+  transform: scale(1.10);
+}
+
+/* Client photo zoom only */
+.client-photo{
+  transform: scale(1);
+  transition: transform .9s ease;
+}
+.client-card:hover .client-photo{
+  transform: scale(1.10);
+}
+
+/* 4) Optional: better text rendering on hover */
+.about-card,
+.work-item,
+.client-card{
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
 
 </style>
 </head>
