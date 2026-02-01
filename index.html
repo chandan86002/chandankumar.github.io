@@ -15,12 +15,20 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
+/* ✅ Fix anchor jump under fixed navbar */
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px; /* important */
+}
+
 body{
   font-family:Arial, sans-serif;
   background:var(--light);
   color:#111;
-  scroll-behavior:smooth;
 }
+
+/* ✅ Fix section jump when clicking nav */
+section{ scroll-margin-top:90px; }
 
 /* ================= NAVBAR (ANIMATED) ================= */
 nav{
@@ -110,7 +118,6 @@ nav ul li a.active{
 }
 
 /* ================= MINI PROFILE ================= */
-/* ✅ Smooth appear animation */
 .mini-profile{
   position:fixed;
   top:75px;
@@ -131,7 +138,6 @@ nav ul li a.active{
     transform .45s cubic-bezier(.2,.8,.2,1);
   will-change: transform, opacity;
 }
-/* Add this class with JS when showing mini profile */
 .mini-profile.show{
   display:flex;
   opacity:1;
@@ -205,7 +211,6 @@ nav ul li a.active{
   will-change: transform;
 }
 .profile-wrap:hover{
-  /* ✅ more zoom than before */
   transform:scale(1.09);
   box-shadow:0 0 45px rgba(34,197,94,.45);
 }
@@ -300,15 +305,17 @@ h2{text-align:center;margin-bottom:30px;}
   box-shadow:0 16px 35px rgba(0,0,0,.16);
 }
 
-/* ================= SCROLL REVEAL (FIXED) ================= */
+/* ================= SCROLL REVEAL ================= */
+/* ✅ smoother + less "buggy" feel */
 .reveal{
   opacity:0;
-  translate: 0 40px;
-  transition: opacity .85s ease, translate .85s ease;
+  transform:translateY(36px);
+  transition: opacity .85s ease, transform .85s cubic-bezier(.2,.8,.2,1);
+  will-change: opacity, transform;
 }
 .reveal.active{
   opacity:1;
-  translate: 0 0;
+  transform:translateY(0);
 }
 
 /* ================= RESPONSIVE ================= */
@@ -319,7 +326,7 @@ h2{text-align:center;margin-bottom:30px;}
 @media(max-width:768px){
   .floating-nav,.floating-social{display:none;}
   nav{padding:12px 16px;}
-  nav ul{gap:10px;}
+  nav ul{gap:8px;}
   nav ul li a{padding:6px 8px;}
 }
 
@@ -340,7 +347,6 @@ h2{text-align:center;margin-bottom:30px;}
   gap:20px;
 }
 
-/* ✅ About card: more zoom + gradient on hover */
 .about-card{
   position:relative;
   background:#fff;
@@ -354,7 +360,6 @@ h2{text-align:center;margin-bottom:30px;}
   transform: translateZ(0);
   overflow:hidden;
 }
-
 .about-card::before{
   content:"";
   position:absolute;
@@ -363,20 +368,10 @@ h2{text-align:center;margin-bottom:30px;}
   opacity:0;
   transition:opacity .55s ease;
 }
-
 .about-card *{ position:relative; z-index:1; }
 
-.about-card h3{
-  margin-bottom:10px;
-  font-size:18px;
-  color:var(--primary);
-}
-
-.about-card p{
-  font-size:14px;
-  color:#555;
-  line-height:1.5;
-}
+.about-card h3{margin-bottom:10px;font-size:18px;color:var(--primary);}
+.about-card p{font-size:14px;color:#555;line-height:1.5;}
 
 .about-card:hover{
   transform:translateY(-10px) scale(1.04);
@@ -386,7 +381,6 @@ h2{text-align:center;margin-bottom:30px;}
 
 /* ================= WORK SECTION ================= */
 .work-section{text-align:center;}
-
 .work-subtitle{
   max-width:720px;
   margin:0 auto 40px;
@@ -395,7 +389,6 @@ h2{text-align:center;margin-bottom:30px;}
   line-height:1.6;
 }
 
-/* ✅ Work item: gradient + smooth zoom */
 .work-item{
   position:relative;
   display:grid;
@@ -412,7 +405,6 @@ h2{text-align:center;margin-bottom:30px;}
     transform .6s cubic-bezier(.2,.8,.2,1),
     box-shadow .6s cubic-bezier(.2,.8,.2,1);
 }
-
 .work-item::before{
   content:"";
   position:absolute;
@@ -421,7 +413,6 @@ h2{text-align:center;margin-bottom:30px;}
   opacity:0;
   transition:opacity .6s ease;
 }
-
 .work-item > *{ position:relative; z-index:1; }
 
 .work-item:hover{
@@ -430,12 +421,7 @@ h2{text-align:center;margin-bottom:30px;}
 }
 .work-item:hover::before{ opacity:1; }
 
-.work-media{
-  border-radius:16px;
-  overflow:hidden;
-  position:relative;
-}
-
+.work-media{border-radius:16px;overflow:hidden;position:relative;}
 .work-media img,
 .work-media video{
   width:100%;
@@ -444,12 +430,8 @@ h2{text-align:center;margin-bottom:30px;}
   display:block;
   transition:transform 1.0s cubic-bezier(.2,.8,.2,1);
 }
-
-/* slow zoom on hover */
 .work-item:hover .work-media img,
-.work-item:hover .work-media video{
-  transform:scale(1.06);
-}
+.work-item:hover .work-media video{ transform:scale(1.06); }
 
 .work-media iframe{
   width:100%;
@@ -470,34 +452,17 @@ h2{text-align:center;margin-bottom:30px;}
     box-shadow .55s cubic-bezier(.2,.8,.2,1);
   will-change: transform;
 }
-
 .work-content:hover{
   transform:translateY(-6px);
   box-shadow:0 18px 45px rgba(30,64,175,0.18);
 }
+.work-content h3{font-size:22px;margin-bottom:10px;color:var(--primary);}
+.work-content p{font-size:16px;color:#444;line-height:1.6;}
 
-.work-content h3{
-  font-size:22px;
-  margin-bottom:10px;
-  color:var(--primary);
-}
-.work-content p{
-  font-size:16px;
-  color:#444;
-  line-height:1.6;
-}
-
-/* Glow on title + description */
 .work-content h3,
-.work-content .work-desc{
-  transition:text-shadow .55s ease, color .55s ease;
-}
-.work-content:hover h3{
-  text-shadow:0 0 14px rgba(30,64,175,0.35);
-}
-.work-content:hover .work-desc{
-  text-shadow:0 0 10px rgba(34,197,94,0.28);
-}
+.work-content .work-desc{transition:text-shadow .55s ease, color .55s ease;}
+.work-content:hover h3{ text-shadow:0 0 14px rgba(30,64,175,0.35); }
+.work-content:hover .work-desc{ text-shadow:0 0 10px rgba(34,197,94,0.28); }
 
 .work-tags{
   margin-top:14px;
@@ -505,7 +470,6 @@ h2{text-align:center;margin-bottom:30px;}
   gap:10px;
   flex-wrap:wrap;
 }
-
 .work-tags span{
   font-size:12px;
   padding:6px 10px;
@@ -515,7 +479,6 @@ h2{text-align:center;margin-bottom:30px;}
   border:1px solid rgba(30,64,175,0.15);
 }
 
-/* Mobile Responsive */
 @media(max-width:900px){
   .work-item{ grid-template-columns:1fr; text-align:left; }
   .work-media img,.work-media video{ height:240px; }
@@ -562,7 +525,6 @@ h2{text-align:center;margin-bottom:30px;}
 
 /* ================= CLIENTS SECTION ================= */
 .clients-section{text-align:center;}
-
 .clients-subtitle{
   max-width:720px;
   margin:0 auto 34px;
@@ -577,7 +539,6 @@ h2{text-align:center;margin-bottom:30px;}
   gap:18px;
 }
 
-/* ✅ Client card: more zoom + gradient hover */
 .client-card{
   position:relative;
   background:#fff;
@@ -591,7 +552,6 @@ h2{text-align:center;margin-bottom:30px;}
   will-change: transform;
   transform: translateZ(0);
 }
-
 .client-card::before{
   content:"";
   position:absolute;
@@ -618,19 +578,8 @@ h2{text-align:center;margin-bottom:30px;}
 .client-card:hover .client-photo{ transform:scale(1.06); }
 
 .client-body{ padding:16px; }
-
-.client-body h3{
-  margin:0 0 6px;
-  color:var(--primary);
-  font-size:18px;
-}
-
-.client-body p{
-  margin:0 0 14px;
-  color:#444;
-  font-size:14px;
-  line-height:1.6;
-}
+.client-body h3{ margin:0 0 6px; color:var(--primary); font-size:18px; }
+.client-body p{ margin:0 0 14px; color:#444; font-size:14px; line-height:1.6; }
 
 .yt-btn{
   display:inline-flex;
@@ -648,7 +597,6 @@ h2{text-align:center;margin-bottom:30px;}
     background-color .45s ease;
   will-change: transform;
 }
-
 .yt-btn:hover{
   transform:scale(1.08);
   box-shadow:0 14px 30px rgba(30,64,175,0.25);
@@ -667,24 +615,9 @@ h2{text-align:center;margin-bottom:30px;}
   border-radius:18px;
   box-shadow:0 10px 24px rgba(0,0,0,0.09);
 }
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.form-group{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-}
-
-.form-group label{
-  font-size:13px;
-  color:#444;
-}
-
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group label{font-size:13px;color:#444;}
 .form-group input,
 .form-group textarea{
   padding:12px 12px;
@@ -694,13 +627,11 @@ h2{text-align:center;margin-bottom:30px;}
   font-size:14px;
   transition: box-shadow .35s ease, border-color .35s ease;
 }
-
 .form-group input:focus,
 .form-group textarea:focus{
   border-color:var(--primary);
   box-shadow:0 0 0 4px rgba(30,64,175,0.12);
 }
-
 .form-group.full{ grid-column:1 / -1; }
 
 .send-btn{
@@ -719,12 +650,10 @@ h2{text-align:center;margin-bottom:30px;}
     background-color .45s ease;
   will-change: transform;
 }
-
 .send-btn:hover{
   transform:scale(1.05);
   box-shadow:0 14px 30px rgba(30,64,175,0.20);
 }
-
 @media(max-width:900px){
   .form-grid{grid-template-columns:1fr;}
   .send-btn{width:100%;}
@@ -740,7 +669,6 @@ h2{text-align:center;margin-bottom:30px;}
   justify-content:center;
   z-index:9999;
 }
-
 .thank-box{
   width:min(420px, 92%);
   background:#fff;
@@ -749,17 +677,8 @@ h2{text-align:center;margin-bottom:30px;}
   text-align:center;
   box-shadow:0 18px 50px rgba(0,0,0,0.25);
 }
-
-.thank-box h3{
-  margin-bottom:8px;
-  color:var(--primary);
-}
-
-.thank-box p{
-  color:#444;
-  font-size:14px;
-  margin-bottom:14px;
-}
+.thank-box h3{ margin-bottom:8px; color:var(--primary); }
+.thank-box p{ color:#444; font-size:14px; margin-bottom:14px; }
 
 .close-btn{
   width:120px;
@@ -800,24 +719,17 @@ h2{text-align:center;margin-bottom:30px;}
 }
 
 /* ===== THEMES ===== */
-body.theme-purple{
-  --primary:#7c3aed;
-  --accent:#a78bfa;
-}
-body.theme-orange{
-  --primary:#ea580c;
-  --accent:#fb923c;
-}
+body.theme-purple{ --primary:#7c3aed; --accent:#a78bfa; }
+body.theme-orange{ --primary:#ea580c; --accent:#fb923c; }
 
-/* ================= ONLINE DOT (Brand + mini) ================= */
-.brand,
-.mini-name{
+/* ================= ONLINE DOT ================= */
+.brand{
   display:flex;
   align-items:center;
   gap:8px;
 }
 
-/* Online indicator */
+/* dot style */
 .online-dot{
   width:10px;
   height:10px;
@@ -827,8 +739,6 @@ body.theme-orange{
   display:inline-block;
   position:relative;
 }
-
-/* Optional pulse effect */
 .online-dot::after{
   content:"";
   position:absolute;
@@ -842,30 +752,33 @@ body.theme-orange{
   100%{ transform:scale(1.6); opacity:0; }
 }
 
-/* ✅ Mobile: make dot closer to text */
+/* ✅ Mobile: move dot near HOME */
+.nav-dot{ display:none; margin-left:6px; vertical-align:middle; }
+
 @media(max-width:768px){
-  .brand,
-  .mini-name{
-    gap:5px;
-  }
-  .online-dot{
-    width:9px;
-    height:9px;
-  }
+  /* hide dot near name on mobile */
+  .brand .online-dot{ display:none; }
+
+  /* show dot near Home link on mobile */
+  .nav-dot{ display:inline-block; width:9px; height:9px; }
+  .nav-dot::after{ inset:-5px; }
 }
 </style>
-
 </head>
 
 <body>
 
 <nav>
   <strong class="brand">
-  Chandan Kumar<span class="online-dot" aria-label="Online"></span>
-</strong>
+    Chandan Kumar <span class="online-dot" aria-label="Online"></span>
+  </strong>
 
   <ul>
-    <li><a href="#home" class="active">Home</a></li>
+    <li>
+      <a href="#home" class="active">
+        Home <span class="online-dot nav-dot" aria-label="Online"></span>
+      </a>
+    </li>
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#clients">Clients</a></li>
@@ -877,7 +790,6 @@ body.theme-orange{
   <img src="images/profile.jpeg" alt="Profile">
   <div>
     <h4>Chandan Kumar</h4>
-   
     <p id="mini-typing"></p>
   </div>
 </div>
@@ -930,7 +842,6 @@ body.theme-orange{
 
 <section id="about" class="reveal about-section">
   <h2>About Me</h2>
-
   <p class="about-text">
     I’m <strong>Chandan Kumar</strong>, a creative <strong>Video Editor & Graphic Designer</strong>.
     I design engaging posters, social media creatives, and professional video edits
@@ -942,17 +853,14 @@ body.theme-orange{
       <h3>🎬 Video Editing</h3>
       <p>Reels, YouTube videos, shorts, transitions & storytelling edits.</p>
     </div>
-
     <div class="about-card">
       <h3>🎨 Graphic Design</h3>
       <p>Posters, banners, visiting cards & social media creatives.</p>
     </div>
-
     <div class="about-card">
       <h3>🛠 Tools</h3>
       <p>CapCut, Alight Motion, Canva, VN, After Effects (learning).</p>
     </div>
-
     <div class="about-card">
       <h3>💼 Experience</h3>
       <p>Worked with clients & brands for digital content and promotions.</p>
@@ -973,9 +881,9 @@ body.theme-orange{
       <h3>Antique Choker Set Poster Design</h3>
       <p class="work-desc typing-text">
         I designed this jewellery promotional poster for Rajvansh Jewellers with a premium and elegant look.
-        For creating this design, I used Canva for layout and typography, 
+        For creating this design, I used Canva for layout and typography,
         took inspiration from Pinterest, and added creative finishing touches using Alight Motion.
-        This poster highlights the royal antique choker set with a rich background, 
+        This poster highlights the royal antique choker set with a rich background,
         clean branding, and attractive product presentation.
       </p>
 
@@ -993,9 +901,9 @@ body.theme-orange{
     <div class="work-content">
       <h3>A Forever Promise Starts Here</h3>
       <p class="work-desc typing-text">
-        I created this promotional poster for Rajvansh Jewellers with a premium and elegant look. 
+        I created this promotional poster for Rajvansh Jewellers with a premium and elegant look.
         The spotlight effect and rich background highlight the ring beautifully.
-        This design was made using Canva, with inspiration from Pinterest, 
+        This design was made using Canva, with inspiration from Pinterest,
         and finishing effects added through Alight Motion.
       </p>
 
@@ -1181,25 +1089,27 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
+/* MINI PROFILE */
 const miniProfile = document.querySelector(".mini-profile");
+let miniVisible = false;
 
-  // Show mini profile after scrolling a bit
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 120) {
-      miniProfile.style.display = "flex";     // must be visible first
-      requestAnimationFrame(() => {
-        miniProfile.classList.add("show");    // smooth fade/slide
-      });
-    } else {
-      miniProfile.classList.remove("show");   // smooth hide
-      // after animation ends, remove from layout
-      setTimeout(() => {
-        if (!miniProfile.classList.contains("show")) {
-          miniProfile.style.display = "none";
-        }
-      }, 450); // same as CSS transition time
-    }
-  });
+window.addEventListener("scroll", () => {
+  const shouldShow = window.scrollY > 140;
+
+  if (shouldShow && !miniVisible) {
+    miniVisible = true;
+    miniProfile.style.display = "flex";
+    requestAnimationFrame(() => miniProfile.classList.add("show"));
+  }
+
+  if (!shouldShow && miniVisible) {
+    miniVisible = false;
+    miniProfile.classList.remove("show");
+    setTimeout(() => {
+      if (!miniVisible) miniProfile.style.display = "none";
+    }, 450);
+  }
+});
 
 /* TYPING (hero + mini) */
 function typing(id){
@@ -1225,7 +1135,7 @@ function reveal(){
     }
   });
 }
-window.addEventListener("scroll",reveal);
+window.addEventListener("scroll",reveal,{passive:true});
 reveal();
 
 /* LIGHTBOX */
@@ -1329,7 +1239,6 @@ themeBtn.addEventListener("click", ()=>{
   index = (index + 1) % themes.length;
   applyTheme();
 });
-
 applyTheme();
 </script>
 
