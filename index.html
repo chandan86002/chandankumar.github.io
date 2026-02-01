@@ -734,181 +734,110 @@ body.theme-orange{
   0%{ transform:scale(0.6); opacity:0.9; }
   100%{ transform:scale(1.6); opacity:0; }
 }
-/* ================= EXTRA ZOOM + GRADIENT HOVER EFFECTS ================= */
+  /* ================= PREMIUM ZOOM + CLEAN GRADIENT (FIXED) ================= */
 
-/* 1) NAVBAR: subtle zoom + gradient glow on hover */
+/* 1) NAVBAR: smooth hover + soft tint */
 nav{
-  transition: transform .35s ease, box-shadow .35s ease, background-color .35s ease;
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
 }
 nav:hover{
   transform: translateY(0) scale(1.01);
-  box-shadow: 0 10px 30px rgba(0,0,0,.14);
+  box-shadow: 0 12px 32px rgba(0,0,0,.14);
+  background:
+    linear-gradient(90deg, rgba(30,64,175,.06), rgba(34,197,94,.06)),
+    rgba(255,255,255,.92);
 }
 
-/* gradient line stronger on hover */
-nav:hover::after{
-  opacity: 1;
-  height: 3px;
-}
-
-/* 2) PROFILE PIC: extra zoom + glow + rotate little */
+/* 2) PROFILE PIC: extra zoom + glow */
 .profile-wrap{
   transition: transform .9s ease, box-shadow .9s ease, filter .9s ease;
 }
 .profile-wrap:hover{
-  transform: scale(1.12) rotate(1.5deg);
-  box-shadow: 0 0 55px rgba(34,197,94,.35);
+  transform: scale(1.12);
+  box-shadow:
+    0 0 0 6px rgba(34,197,94,.16),
+    0 0 45px rgba(30,64,175,.28);
   filter: saturate(1.1);
 }
 
-/* 3) SECTION GRADIENT OVERLAY (About/Work/Clients) */
+/* 3) ABOUT / WORK / CLIENTS section: background gradient tint (not overlay) */
 .about-section,
 .work-section,
 .clients-section{
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-}
-
-/* gradient overlay layer */
-.about-section::before,
-.work-section::before,
-.clients-section::before{
-  content:"";
-  position:absolute;
-  inset:0;
+  border-radius: 24px;
   background: linear-gradient(135deg,
-    rgba(34,197,94,0.14),
-    rgba(30,64,175,0.12),
-    rgba(234,88,12,0.10)
+    rgba(30,64,175,0.05),
+    rgba(34,197,94,0.05)
   );
-  opacity: 0;
-  transition: opacity .45s ease;
-  pointer-events:none;
+  transition: transform .35s ease, box-shadow .35s ease, background .35s ease;
 }
 
-/* show gradient on hover */
-.about-section:hover::before,
-.work-section:hover::before,
-.clients-section:hover::before{
-  opacity: 1;
-}
-
-/* also slightly lift the whole section */
-.about-section,
-.work-section,
-.clients-section{
-  transition: transform .35s ease, box-shadow .35s ease;
-}
 .about-section:hover,
 .work-section:hover,
 .clients-section:hover{
   transform: translateY(-6px);
   box-shadow: 0 18px 55px rgba(0,0,0,.10);
+  background: linear-gradient(135deg,
+    rgba(30,64,175,0.09),
+    rgba(34,197,94,0.09)
+  );
 }
 
-/* keep text/cards above overlay */
-.about-section > *,
-.work-section > *,
-.clients-section > *{
-  position: relative;
-  z-index: 2;
-}
-
-/* 4) ABOUT CARDS: stronger zoom + gradient border glow */
+/* 4) ABOUT CARDS: clean gradient border (no text issue) */
 .about-card{
-  position: relative;
-  overflow: hidden;
-  transition: transform .45s ease, box-shadow .45s ease;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 .about-card:hover{
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 18px 45px rgba(0,0,0,.16);
 }
 
-/* gradient shine on card hover */
-.about-card::after{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background: linear-gradient(120deg, var(--accent), var(--primary), var(--accent));
-  opacity:0;
-  transition: opacity .45s ease;
-  filter: blur(16px);
-  pointer-events:none;
-}
-.about-card:hover::after{ opacity:.35; }
-
-/* 5) WORK SECTION: whole item zoom + gradient glow */
+/* 5) WORK ITEM: premium gradient border + zoom */
 .work-item{
-  position: relative;
-  transition: transform .45s ease, box-shadow .45s ease;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, var(--primary), var(--accent)) border-box;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 .work-item:hover{
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 60px rgba(0,0,0,.14);
 }
 
-/* gradient overlay on work item */
-.work-item::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(135deg,
-    rgba(34,197,94,0.12),
-    rgba(30,64,175,0.12),
-    rgba(234,88,12,0.10)
-  );
-  opacity:0;
-  transition: opacity .45s ease;
-  pointer-events:none;
+/* media zoom smoother */
+.work-media img,
+.work-media video{
+  transition: transform .9s ease;
 }
-.work-item:hover::before{ opacity:1; }
-
-/* ensure work content stays above overlay */
-.work-item > *{
-  position: relative;
-  z-index: 2;
-}
-
-/* media zoom more */
 .work-item:hover .work-media img,
 .work-item:hover .work-media video{
-  transform: scale(1.09);
+  transform: scale(1.08);
 }
 
-/* 6) CLIENT SECTION: card zoom + gradient overlay */
+/* 6) CLIENT CARD: same premium border + zoom */
 .client-card{
-  position: relative;
-  transition: transform .45s ease, box-shadow .45s ease;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, var(--accent), var(--primary)) border-box;
+  transition: transform .35s ease, box-shadow .35s ease;
 }
 .client-card:hover{
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 20px 60px rgba(0,0,0,.14);
 }
-.client-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: linear-gradient(135deg,
-    rgba(34,197,94,0.12),
-    rgba(30,64,175,0.10),
-    rgba(234,88,12,0.10)
-  );
-  opacity:0;
-  transition: opacity .45s ease;
-  pointer-events:none;
-}
-.client-card:hover::before{ opacity:1; }
-.client-card > *{
-  position: relative;
-  z-index: 2;
-}
 
-/* client image extra zoom smooth */
+/* client image zoom smooth */
+.client-photo{
+  transition: transform .9s ease;
+}
 .client-card:hover .client-photo{
-  transform: scale(1.08);
-  transition: transform .8s ease;
+  transform: scale(1.07);
 }
 
 </style>
