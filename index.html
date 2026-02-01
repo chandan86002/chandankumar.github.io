@@ -1263,33 +1263,51 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
+/* ✅ STOP AUTO JUMP TO #home ON RELOAD (run first) */
+(function () {
+  if (window.location.hash) {
+    // remove #something from URL so refresh doesn't jump
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+    // ensure top position
+    window.scrollTo(0, 0);
+  }
+})();
+
 /* MINI PROFILE + ACTIVE NAV */
-const mini=document.getElementById("miniProfile");
-const navLinks=document.querySelectorAll("nav a");
-const navIcons=document.querySelectorAll(".floating-nav a");
-const sections=document.querySelectorAll("section");
+const mini = document.getElementById("miniProfile");
+const navLinks = document.querySelectorAll("nav a");
+const navIcons = document.querySelectorAll(".floating-nav a");
+const sections = document.querySelectorAll("section");
 
-window.addEventListener("scroll",()=>{
-  mini.style.display=window.scrollY>300?"flex":"none";
+window.addEventListener("scroll", () => {
+  if (mini) mini.style.display = window.scrollY > 300 ? "flex" : "none";
 
-  let current="";
-  sections.forEach(sec=>{
-    if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+  let current = "";
+  sections.forEach(sec => {
+    if (window.scrollY >= sec.offsetTop - 200) current = sec.id;
   });
 
-  navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
-  navIcons.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+  navLinks.forEach(a =>
+    a.classList.toggle("active", a.getAttribute("href") === "#" + current)
+  );
+  navIcons.forEach(a =>
+    a.classList.toggle("active", a.getAttribute("href") === "#" + current)
+  );
 });
 
 /* TYPING (hero + mini) */
-function typing(id){
-  const text="Video Editor & Graphic Designer";
-  let i=0, el=document.getElementById(id);
-  el.textContent="";
-  (function type(){
-    if(i<text.length){
-      el.textContent+=text[i++];
-      setTimeout(type,80);
+function typing(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+
+  const text = "Video Editor & Graphic Designer";
+  let i = 0;
+  el.textContent = "";
+
+  (function type() {
+    if (i < text.length) {
+      el.textContent += text[i++];
+      setTimeout(type, 80);
     }
   })();
 }
@@ -1297,28 +1315,33 @@ typing("hero-typing");
 typing("mini-typing");
 
 /* SCROLL REVEAL */
-const reveals=document.querySelectorAll(".reveal");
-function reveal(){
-  reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight-120){
+const reveals = document.querySelectorAll(".reveal");
+function reveal() {
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 120) {
       el.classList.add("active");
     }
   });
 }
-window.addEventListener("scroll",reveal);
+window.addEventListener("scroll", reveal);
 reveal();
 
 /* LIGHTBOX */
-function openLightbox(img){
-  document.getElementById("lightbox").style.display="flex";
-  document.getElementById("lightbox-img").src = img.src;
+function openLightbox(img) {
+  const box = document.getElementById("lightbox");
+  const boxImg = document.getElementById("lightbox-img");
+  if (!box || !boxImg) return;
+
+  box.style.display = "flex";
+  boxImg.src = img.src;
 }
-function closeLightbox(){
-  document.getElementById("lightbox").style.display="none";
+function closeLightbox() {
+  const box = document.getElementById("lightbox");
+  if (box) box.style.display = "none";
 }
 
 /* Work Typing Effect (on scroll) */
-function typeText(el, speed=18){
+function typeText(el, speed = 18) {
   const full = el.getAttribute("data-full");
   el.textContent = "";
   let i = 0;
@@ -1328,34 +1351,34 @@ function typeText(el, speed=18){
   cursor.textContent = "|";
   el.appendChild(cursor);
 
-  function step(){
-    if(i < full.length){
+  function step() {
+    if (i < full.length) {
       cursor.insertAdjacentText("beforebegin", full.charAt(i));
       i++;
       setTimeout(step, speed);
-    }else{
+    } else {
       cursor.remove();
     }
   }
   step();
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("DOMContentLoaded", () => {
   const items = document.querySelectorAll(".typing-text");
-  items.forEach(el=>{
+  items.forEach(el => {
     el.setAttribute("data-full", el.textContent.trim());
   });
 
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting && !entry.target.classList.contains("typed")){
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains("typed")) {
         entry.target.classList.add("typed");
         typeText(entry.target, 18);
       }
     });
   }, { threshold: 0.4 });
 
-  items.forEach(el=>observer.observe(el));
+  items.forEach(el => observer.observe(el));
 });
 
 /* CONTACT POPUP */
@@ -1380,7 +1403,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closePopup.addEventListener("click", () => {
     popup.style.display = "none";
-    window.location.hash = "home";
+
+    /* ✅ DO NOT set hash (it causes #home on refresh) */
+    // window.location.hash = "home";  ❌ removed
+
+    /* ✅ If you want: go top without hash */
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
 });
 
@@ -1391,13 +1419,15 @@ const themeBtn = document.getElementById("themeToggle");
 const themes = ["blue", "purple", "orange"];
 let index = 0;
 
-function applyTheme(){
-  body.classList.remove("theme-purple","theme-orange");
+function applyTheme() {
+  body.classList.remove("theme-purple", "theme-orange");
 
-  if(themes[index] === "purple"){
+  if (!themeBtn) return;
+
+  if (themes[index] === "purple") {
     body.classList.add("theme-purple");
     themeBtn.textContent = "💜";
-  } else if(themes[index] === "orange"){
+  } else if (themes[index] === "orange") {
     body.classList.add("theme-orange");
     themeBtn.textContent = "🧡";
   } else {
@@ -1405,19 +1435,13 @@ function applyTheme(){
   }
 }
 
-themeBtn.addEventListener("click", ()=>{
-  index = (index + 1) % themes.length;
-  applyTheme();
-});
-
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    index = (index + 1) % themes.length;
+    applyTheme();
+  });
+}
 applyTheme();
- 
-  // Prevent auto jump to #home on page reload
-  if (window.location.hash) {
-    history.replaceState(null, "", window.location.pathname);
-  }
-
-
 </script>
 
 </body>
