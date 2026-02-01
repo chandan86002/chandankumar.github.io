@@ -1411,6 +1411,13 @@ themeBtn.addEventListener("click", ()=>{
 });
 
 applyTheme();
+ 
+  // Prevent auto jump to #home on page reload
+  if (window.location.hash) {
+    history.replaceState(null, "", window.location.pathname);
+  }
+
+
 </script>
 
 </body>
