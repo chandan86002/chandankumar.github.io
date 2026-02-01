@@ -92,7 +92,6 @@ nav ul li a{
   color:#333;
   font-size:14px;
 
-  /* ✅ Add border + smooth zoom */
   padding:7px 12px;
   border-radius:999px;
   border:1px solid transparent;
@@ -107,13 +106,11 @@ nav ul li a{
   will-change: transform;
 }
 
-/* ✅ When you hover on the NAVBAR area, all links get a subtle border */
 nav:hover ul li a{
   border-color:rgba(30,64,175,0.18);
   background:rgba(30,64,175,0.03);
 }
 
-/* ✅ Individual hover stronger */
 nav ul li a:hover{
   color:var(--primary);
   transform:translateY(-1px) scale(1.08);
@@ -122,7 +119,6 @@ nav ul li a:hover{
   box-shadow:0 10px 20px rgba(0,0,0,.08);
 }
 
-/* ✅ Active state kept */
 nav ul li a.active{
   color:var(--primary);
   border-color:rgba(34,197,94,0.65);
@@ -130,11 +126,6 @@ nav ul li a.active{
 }
 
 /* ================= MINI PROFILE (SMOOTH APPEAR) ================= */
-/* IMPORTANT:
-   Keep your JS same, but for best smoothness:
-   - show it by adding class "show" (recommended)
-   If your JS uses display:flex / none, it will still work, but smooth fade is limited.
-*/
 .mini-profile{
   position:fixed;
   top:75px;
@@ -143,14 +134,13 @@ nav ul li a.active{
   padding:10px 14px;
   border-radius:14px;
 
-  display:flex;                 /* ✅ always flex for smooth animation */
+  display:flex;
   align-items:center;
   gap:10px;
 
   box-shadow:0 6px 16px rgba(0,0,0,.12);
   z-index:999;
 
-  /* ✅ hidden state */
   opacity:0;
   transform:translateY(-10px) scale(.98);
   pointer-events:none;
@@ -162,7 +152,6 @@ nav ul li a.active{
     visibility .45s;
 }
 
-/* ✅ Add this class when you want it visible */
 .mini-profile.show{
   opacity:1;
   transform:translateY(0) scale(1);
@@ -237,7 +226,7 @@ nav ul li a.active{
   will-change: transform;
 }
 .profile-wrap:hover{
-  transform:scale(1.09); /* ✅ a little more than before */
+  transform:scale(1.09);
   box-shadow:0 0 52px rgba(34,197,94,.38);
 }
 .profile-inner{
@@ -335,7 +324,7 @@ h2{text-align:center;margin-bottom:30px;}
   box-shadow:0 18px 34px rgba(0,0,0,.18);
 }
 
-/* ================= SCROLL REVEAL (FIXED) ================= */
+/* ================= SCROLL REVEAL ================= */
 .reveal{
   opacity:0;
   translate: 0 40px;
@@ -351,11 +340,38 @@ h2{text-align:center;margin-bottom:30px;}
   #home{grid-template-columns:1fr;text-align:center;padding:120px 20px;}
   .hero-social{justify-content:center;}
 }
+
+/* ✅ Mobile navbar one row */
 @media(max-width:768px){
   .floating-nav,.floating-social{display:none;}
-  nav{padding:12px 14px;}
-  nav ul{gap:10px; flex-wrap:wrap;}
-  nav ul li a{padding:6px 10px;}
+
+  nav{
+    padding:10px 12px;
+    gap:10px;
+  }
+
+  nav strong{
+    font-size:14px;
+    white-space:nowrap;
+    flex:0 0 auto;
+  }
+
+  nav ul{
+    flex-wrap:nowrap;
+    gap:10px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  nav ul::-webkit-scrollbar{ display:none; }
+
+  nav ul li{ flex:0 0 auto; }
+
+  nav ul li a{
+    padding:6px 10px;
+    font-size:13px;
+    white-space:nowrap;
+  }
 }
 
 /* ================= ABOUT SECTION ================= */
@@ -390,7 +406,6 @@ h2{text-align:center;margin-bottom:30px;}
   overflow:hidden;
 }
 
-/* ✅ Gradient overlay (only on hover) */
 .about-card::before{
   content:"";
   position:absolute;
@@ -415,7 +430,7 @@ h2{text-align:center;margin-bottom:30px;}
 }
 
 .about-card:hover{
-  transform:translateY(-10px) scale(1.04); /* ✅ more zoom */
+  transform:translateY(-10px) scale(1.04);
   box-shadow:0 18px 44px rgba(0,0,0,0.14);
 }
 .about-card:hover::before{ opacity:1; }
@@ -449,7 +464,6 @@ h2{text-align:center;margin-bottom:30px;}
   position:relative;
 }
 
-/* ✅ Work gradient on hover */
 .work-item::before{
   content:"";
   position:absolute;
@@ -482,7 +496,6 @@ h2{text-align:center;margin-bottom:30px;}
   transition:transform .95s cubic-bezier(.2,.8,.2,1);
 }
 
-/* ✅ slower + smoother zoom */
 .work-item:hover .work-media img,
 .work-item:hover .work-media video{
   transform:scale(1.06);
@@ -538,7 +551,6 @@ h2{text-align:center;margin-bottom:30px;}
   line-height:1.6;
 }
 
-/* Glow on title + description */
 .work-content h3,
 .work-content .work-desc{
   transition:text-shadow .55s cubic-bezier(.2,.8,.2,1), color .55s cubic-bezier(.2,.8,.2,1);
@@ -573,7 +585,6 @@ h2{text-align:center;margin-bottom:30px;}
   background:rgba(34,197,94,0.10);
 }
 
-/* Mobile Responsive */
 @media(max-width:900px){
   .work-item{ grid-template-columns:1fr; text-align:left; }
   .work-media img,
@@ -619,7 +630,7 @@ h2{text-align:center;margin-bottom:30px;}
 }
 @keyframes blink{ 50%{opacity:0;} }
 
-/* ================= CLIENTS SECTION (SMOOTHER + GRADIENT) ================= */
+/* ================= CLIENTS SECTION ================= */
 .clients-section{text-align:center;}
 
 .clients-subtitle{
@@ -789,6 +800,7 @@ h2{text-align:center;margin-bottom:30px;}
   background:linear-gradient(135deg, var(--primary), var(--accent));
 }
 
+/* ✅ Contact form mobile */
 @media(max-width:900px){
   .form-grid{grid-template-columns:1fr;}
   .send-btn{width:100%;}
@@ -908,22 +920,21 @@ body.theme-orange{
   100%{ transform:scale(1.6); opacity:0; }
 }
 
-/* ✅ MOBILE FIX: bring green dot closer (less gap + smaller dot) */
+/* ✅ MOBILE FIX: bring green dot closer */
 @media(max-width:768px){
-  .brand, .mini-name{ gap:5px; }              /* ✅ closer */
-  .online-dot{ width:8px; height:8px; }       /* ✅ smaller */
-  .online-dot::after{ inset:-5px; }           /* ✅ tighter pulse */
+  .brand{ gap:5px; }
+  .online-dot{ width:8px; height:8px; }
+  .online-dot::after{ inset:-5px; }
 }
 </style>
-
 </head>
 
 <body>
 
 <nav>
   <strong class="brand">
-  Chandan Kumar<span class="online-dot" aria-label="Online"></span>
-</strong>
+    Chandan Kumar <span class="online-dot" aria-label="Online"></span>
+  </strong>
 
   <ul>
     <li><a href="#home" class="active">Home</a></li>
@@ -935,11 +946,9 @@ body.theme-orange{
 </nav>
 
 <div id="miniProfile" class="mini-profile">
-
   <img src="images/profile.jpeg" alt="Profile">
   <div>
     <h4>Chandan Kumar</h4>
-   
     <p id="mini-typing"></p>
   </div>
 </div>
@@ -1243,47 +1252,62 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
-/* MINI PROFILE + ACTIVE NAV */
+/* MINI PROFILE + NAV ACTIVE + REVEAL */
 const mini = document.getElementById("miniProfile");
 const navLinks = document.querySelectorAll("nav a");
 const navIcons = document.querySelectorAll(".floating-nav a");
 const sections = document.querySelectorAll("section");
 
-/* ✅ Smooth mini profile show/hide (uses .show class from CSS) */
-function toggleMiniProfile() {
-  if (!mini) return;
-  if (window.scrollY > 300) mini.classList.add("show");
+/* ✅ mini profile smooth */
+function toggleMiniProfile(){
+  if(!mini) return;
+  if(window.scrollY > 300) mini.classList.add("show");
   else mini.classList.remove("show");
 }
 
-/* ✅ Better active section detect */
-function updateActiveNav() {
-  let current = "home";
-
-  sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const height = sec.offsetHeight;
-    if (window.scrollY >= top - 220 && window.scrollY < top + height - 220) {
-      current = sec.id;
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll(".reveal");
+function reveal(){
+  reveals.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 120){
+      el.classList.add("active");
     }
   });
+}
+reveal();
 
-  navLinks.forEach(a => {
-    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
-  });
-
-  navIcons.forEach(a => {
-    a.classList.toggle("active", a.getAttribute("href") === "#" + current);
-  });
+/* ✅ Active NAV using IntersectionObserver */
+function setActive(id){
+  navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+  navIcons.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
 }
 
-/* ✅ Smooth performance on scroll */
+const sectionObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      setActive(entry.target.id);
+    }
+  });
+},{
+  threshold: 0.35,
+  rootMargin: "-35% 0px -55% 0px"
+});
+
+sections.forEach(sec => sectionObserver.observe(sec));
+
+/* ✅ bottom edge fix */
+window.addEventListener("scroll", ()=>{
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
+    setActive("contact");
+  }
+});
+
+/* ✅ Smooth scroll handler */
 let ticking = false;
-window.addEventListener("scroll", () => {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
+window.addEventListener("scroll", ()=>{
+  if(!ticking){
+    requestAnimationFrame(()=>{
       toggleMiniProfile();
-      updateActiveNav();
       reveal();
       ticking = false;
     });
@@ -1291,9 +1315,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-/* Call once on load */
 toggleMiniProfile();
-updateActiveNav();
 
 /* TYPING (hero + mini) */
 function typing(id){
@@ -1310,17 +1332,6 @@ function typing(id){
 }
 typing("hero-typing");
 typing("mini-typing");
-
-/* SCROLL REVEAL */
-const reveals = document.querySelectorAll(".reveal");
-function reveal(){
-  reveals.forEach(el=>{
-    if(el.getBoundingClientRect().top < window.innerHeight - 120){
-      el.classList.add("active");
-    }
-  });
-}
-reveal();
 
 /* LIGHTBOX */
 function openLightbox(img){
@@ -1425,10 +1436,8 @@ if(themeBtn){
     applyTheme();
   });
 }
-
 applyTheme();
 </script>
-
 
 </body>
 </html>
