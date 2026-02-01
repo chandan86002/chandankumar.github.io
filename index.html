@@ -15,21 +15,12 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-/* ✅ Fix anchor jump under fixed navbar (dynamic height) */
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top: var(--navH, 90px);
-}
-
 body{
   font-family:Arial, sans-serif;
   background:var(--light);
   color:#111;
-  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
-
-/* ✅ Fix section jump when clicking nav (dynamic height) */
-section{ scroll-margin-top: var(--navH, 90px); }
 
 /* ================= NAVBAR (ANIMATED) ================= */
 nav{
@@ -85,39 +76,23 @@ nav ul li:nth-child(2){animation-delay:.33s;}
 nav ul li:nth-child(3){animation-delay:.41s;}
 nav ul li:nth-child(4){animation-delay:.49s;}
 nav ul li:nth-child(5){animation-delay:.57s;}
+
 @keyframes navItems{ to{opacity:1; transform:translateY(0);} }
 
-/* ✅ NAV LINKS: BORDER + SMOOTH ZOOM */
 nav ul li a{
   text-decoration:none;
   color:#333;
   font-size:14px;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid transparent;
-  transition:
-    transform .35s cubic-bezier(.2,.8,.2,1),
-    color .35s ease,
-    background-color .35s ease,
-    border-color .35s ease,
-    box-shadow .35s ease;
-  will-change: transform;
-  display:inline-flex;
-  align-items:center;
+  padding-bottom:4px;
+  transition:transform .25s ease, color .25s ease;
 }
-
 nav ul li a:hover{
   color:var(--primary);
-  transform:translateY(-1px) scale(1.08);
-  border-color:rgba(30,64,175,0.25);
-  background:rgba(30,64,175,0.06);
-  box-shadow:0 10px 22px rgba(0,0,0,0.10);
+  transform:translateY(-1px);
 }
-
 nav ul li a.active{
   color:var(--primary);
-  border-color:rgba(34,197,94,0.55);
-  background:rgba(34,197,94,0.10);
+  border-bottom:2px solid var(--accent);
 }
 
 /* ================= MINI PROFILE ================= */
@@ -133,20 +108,7 @@ nav ul li a.active{
   gap:10px;
   box-shadow:0 6px 16px rgba(0,0,0,.12);
   z-index:999;
-
-  opacity:0;
-  transform:translateY(-10px);
-  transition:
-    opacity .45s cubic-bezier(.2,.8,.2,1),
-    transform .45s cubic-bezier(.2,.8,.2,1);
-  will-change: transform, opacity;
 }
-.mini-profile.show{
-  display:flex;
-  opacity:1;
-  transform:translateY(0);
-}
-
 .mini-profile img{
   width:40px;height:40px;border-radius:50%;object-fit:cover;
 }
@@ -182,21 +144,17 @@ nav ul li a.active{
   align-items:center;
   justify-content:center;
   box-shadow:0 6px 16px rgba(0,0,0,.12);
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    background-color .45s ease,
-    box-shadow .45s ease;
+  transition:transform .35s ease, background-color .35s ease;
   will-change: transform;
 }
 .hero-social a:hover{
-  transform:scale(1.14);
+  transform:scale(1.12);
   background:var(--primary);
-  box-shadow:0 14px 30px rgba(0,0,0,.16);
 }
 .hero-social svg{
   width:18px;height:18px;
   fill:#333;
-  transition:fill .45s ease;
+  transition:fill .35s ease;
 }
 .hero-social a:hover svg{fill:#fff;}
 
@@ -208,14 +166,12 @@ nav ul li a.active{
   border-radius:50%;
   padding:6px;
   background:conic-gradient(var(--accent),var(--primary),var(--accent));
-  transition:
-    transform .95s cubic-bezier(.2,.8,.2,1),
-    box-shadow .95s cubic-bezier(.2,.8,.2,1);
+  transition:transform .9s ease, box-shadow .9s ease;
   will-change: transform;
 }
 .profile-wrap:hover{
-  transform:scale(1.09);
-  box-shadow:0 0 45px rgba(34,197,94,.45);
+  transform:scale(1.05);
+  box-shadow:0 0 40px rgba(34,197,94,.4);
 }
 .profile-inner{
   width:100%;height:100%;
@@ -258,18 +214,14 @@ h2{text-align:center;margin-bottom:30px;}
   align-items:center;
   justify-content:center;
   box-shadow:0 6px 16px rgba(0,0,0,.15);
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    background-color .45s ease,
-    box-shadow .45s ease;
+  transition:transform .35s ease, background-color .35s ease;
   will-change: transform;
 }
 .floating-social a:hover{
-  transform:translateX(8px) scale(1.14);
+  transform:translateX(8px) scale(1.12);
   background:var(--primary);
-  box-shadow:0 16px 35px rgba(0,0,0,.16);
 }
-.floating-social svg{width:18px;height:18px;fill:#333;transition:fill .45s ease;}
+.floating-social svg{width:18px;height:18px;fill:#333;transition:fill .35s ease;}
 .floating-social a:hover svg{fill:#fff;}
 
 /* ================= RIGHT FLOATING NAV ================= */
@@ -291,11 +243,7 @@ h2{text-align:center;margin-bottom:30px;}
   align-items:center;
   justify-content:center;
   box-shadow:0 6px 16px rgba(0,0,0,.15);
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    background-color .45s ease,
-    color .45s ease,
-    box-shadow .45s ease;
+  transition:transform .35s ease, background-color .35s ease, color .35s ease;
   color:#333;
   will-change: transform;
 }
@@ -304,20 +252,30 @@ h2{text-align:center;margin-bottom:30px;}
 .floating-nav a.active{
   background:var(--primary);
   color:#fff;
-  transform:translateX(-6px) scale(1.10);
-  box-shadow:0 16px 35px rgba(0,0,0,.16);
+  transform:translateX(-6px) scale(1.08);
 }
 
-/* ================= SCROLL REVEAL ================= */
+/* ================= SCROLL REVEAL (FIXED) ================= */
+/* IMPORTANT: Using translate property instead of transform to avoid hover jerk */
 .reveal{
   opacity:0;
-  transform:translateY(36px);
-  transition: opacity .85s ease, transform .85s cubic-bezier(.2,.8,.2,1);
-  will-change: opacity, transform;
+  translate: 0 40px;
+  transition: opacity .8s ease, translate .8s ease;
 }
 .reveal.active{
   opacity:1;
-  transform:translateY(0);
+  translate: 0 0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media(max-width:900px){
+  #home{grid-template-columns:1fr;text-align:center;padding:120px 20px;}
+  .hero-social{justify-content:center;}
+}
+@media(max-width:768px){
+  .floating-nav,.floating-social{display:none;}
+  nav{padding:12px 16px;}
+  nav ul{gap:14px;}
 }
 
 /* ================= ABOUT SECTION ================= */
@@ -338,39 +296,35 @@ h2{text-align:center;margin-bottom:30px;}
 }
 
 .about-card{
-  position:relative;
   background:#fff;
   padding:22px;
   border-radius:16px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.10);
-  transition:
-    transform .55s cubic-bezier(.2,.8,.2,1),
-    box-shadow .55s cubic-bezier(.2,.8,.2,1);
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+  transition:transform .35s ease, box-shadow .35s ease;
   will-change: transform;
   transform: translateZ(0);
-  overflow:hidden;
 }
-.about-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(30,64,175,0.14), rgba(34,197,94,0.14));
-  opacity:0;
-  transition:opacity .55s ease;
-}
-.about-card *{ position:relative; z-index:1; }
 
-.about-card h3{margin-bottom:10px;font-size:18px;color:var(--primary);}
-.about-card p{font-size:14px;color:#555;line-height:1.5;}
+.about-card h3{
+  margin-bottom:10px;
+  font-size:18px;
+  color:var(--primary);
+}
+
+.about-card p{
+  font-size:14px;
+  color:#555;
+  line-height:1.5;
+}
 
 .about-card:hover{
-  transform:translateY(-10px) scale(1.04);
-  box-shadow:0 18px 45px rgba(0,0,0,0.16);
+  transform:translateY(-8px);
+  box-shadow:0 14px 30px rgba(0,0,0,0.15);
 }
-.about-card:hover::before{ opacity:1; }
 
 /* ================= WORK SECTION ================= */
 .work-section{text-align:center;}
+
 .work-subtitle{
   max-width:720px;
   margin:0 auto 40px;
@@ -380,7 +334,6 @@ h2{text-align:center;margin-bottom:30px;}
 }
 
 .work-item{
-  position:relative;
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:28px;
@@ -391,37 +344,28 @@ h2{text-align:center;margin-bottom:30px;}
   margin:22px auto;
   box-shadow:0 10px 24px rgba(0,0,0,0.09);
   overflow:hidden;
-  transition:
-    transform .6s cubic-bezier(.2,.8,.2,1),
-    box-shadow .6s cubic-bezier(.2,.8,.2,1);
 }
-.work-item::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(30,64,175,0.12), rgba(34,197,94,0.12));
-  opacity:0;
-  transition:opacity .6s ease;
-}
-.work-item > *{ position:relative; z-index:1; }
 
-.work-item:hover{
-  transform:translateY(-10px) scale(1.02);
-  box-shadow:0 18px 46px rgba(0,0,0,0.15);
+.work-media{
+  border-radius:16px;
+  overflow:hidden;
+  position:relative;
 }
-.work-item:hover::before{ opacity:1; }
 
-.work-media{border-radius:16px;overflow:hidden;position:relative;}
 .work-media img,
 .work-media video{
   width:100%;
   height:320px;
   object-fit:cover;
   display:block;
-  transition:transform 1.0s cubic-bezier(.2,.8,.2,1);
+  transition:transform .8s ease;
 }
+
+/* slow zoom on hover */
 .work-item:hover .work-media img,
-.work-item:hover .work-media video{ transform:scale(1.06); }
+.work-item:hover .work-media video{
+  transform:scale(1.04);
+}
 
 .work-media iframe{
   width:100%;
@@ -437,22 +381,37 @@ h2{text-align:center;margin-bottom:30px;}
   padding:18px;
   border-radius:16px;
   box-shadow:0 10px 22px rgba(0,0,0,0.08);
-  transition:
-    transform .55s cubic-bezier(.2,.8,.2,1),
-    box-shadow .55s cubic-bezier(.2,.8,.2,1);
+  transition:transform .35s ease, box-shadow .35s ease;
   will-change: transform;
 }
-.work-content:hover{
-  transform:translateY(-6px);
-  box-shadow:0 18px 45px rgba(30,64,175,0.18);
-}
-.work-content h3{font-size:22px;margin-bottom:10px;color:var(--primary);}
-.work-content p{font-size:16px;color:#444;line-height:1.6;}
 
+.work-content:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 40px rgba(30,64,175,0.18);
+}
+
+.work-content h3{
+  font-size:22px;
+  margin-bottom:10px;
+  color:var(--primary);
+}
+.work-content p{
+  font-size:16px;
+  color:#444;
+  line-height:1.6;
+}
+
+/* Glow on title + description */
 .work-content h3,
-.work-content .work-desc{transition:text-shadow .55s ease, color .55s ease;}
-.work-content:hover h3{ text-shadow:0 0 14px rgba(30,64,175,0.35); }
-.work-content:hover .work-desc{ text-shadow:0 0 10px rgba(34,197,94,0.28); }
+.work-content .work-desc{
+  transition:text-shadow .35s ease, color .35s ease;
+}
+.work-content:hover h3{
+  text-shadow:0 0 14px rgba(30,64,175,0.35);
+}
+.work-content:hover .work-desc{
+  text-shadow:0 0 10px rgba(34,197,94,0.28);
+}
 
 .work-tags{
   margin-top:14px;
@@ -460,6 +419,7 @@ h2{text-align:center;margin-bottom:30px;}
   gap:10px;
   flex-wrap:wrap;
 }
+
 .work-tags span{
   font-size:12px;
   padding:6px 10px;
@@ -467,6 +427,21 @@ h2{text-align:center;margin-bottom:30px;}
   background:rgba(30,64,175,0.08);
   color:var(--primary);
   border:1px solid rgba(30,64,175,0.15);
+}
+
+/* Mobile Responsive */
+@media(max-width:900px){
+  .work-item{
+    grid-template-columns:1fr;
+    text-align:left;
+  }
+  .work-media img,
+  .work-media video{
+    height:240px;
+  }
+  .work-media iframe{
+    height:220px;
+  }
 }
 
 /* ===== IMAGE LIGHTBOX ===== */
@@ -509,6 +484,7 @@ h2{text-align:center;margin-bottom:30px;}
 
 /* ================= CLIENTS SECTION ================= */
 .clients-section{text-align:center;}
+
 .clients-subtitle{
   max-width:720px;
   margin:0 auto 34px;
@@ -524,46 +500,42 @@ h2{text-align:center;margin-bottom:30px;}
 }
 
 .client-card{
-  position:relative;
   background:#fff;
   border-radius:18px;
   overflow:hidden;
   box-shadow:0 10px 24px rgba(0,0,0,0.09);
-  transition:
-    transform .55s cubic-bezier(.2,.8,.2,1),
-    box-shadow .55s cubic-bezier(.2,.8,.2,1);
+  transition:transform .35s ease, box-shadow .35s ease;
   text-align:left;
   will-change: transform;
   transform: translateZ(0);
 }
-.client-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(135deg, rgba(30,64,175,0.12), rgba(34,197,94,0.12));
-  opacity:0;
-  transition:opacity .55s ease;
-}
-.client-card > *{ position:relative; z-index:1; }
 
 .client-card:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 18px 46px rgba(30,64,175,0.18);
+  transform:translateY(-6px);
+  box-shadow:0 16px 40px rgba(30,64,175,0.16);
 }
-.client-card:hover::before{ opacity:1; }
 
 .client-photo{
   width:100%;
   height:180px;
   object-fit:cover;
   display:block;
-  transition:transform 1.0s cubic-bezier(.2,.8,.2,1);
 }
-.client-card:hover .client-photo{ transform:scale(1.06); }
 
 .client-body{ padding:16px; }
-.client-body h3{ margin:0 0 6px; color:var(--primary); font-size:18px; }
-.client-body p{ margin:0 0 14px; color:#444; font-size:14px; line-height:1.6; }
+
+.client-body h3{
+  margin:0 0 6px;
+  color:var(--primary);
+  font-size:18px;
+}
+
+.client-body p{
+  margin:0 0 14px;
+  color:#444;
+  font-size:14px;
+  line-height:1.6;
+}
 
 .yt-btn{
   display:inline-flex;
@@ -575,15 +547,17 @@ h2{text-align:center;margin-bottom:30px;}
   color:#fff;
   text-decoration:none;
   font-size:13px;
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    box-shadow .45s ease,
-    background-color .45s ease;
+  transition:transform .25s ease, box-shadow .25s ease;
   will-change: transform;
 }
+
 .yt-btn:hover{
-  transform:scale(1.08);
-  box-shadow:0 14px 30px rgba(30,64,175,0.25);
+  transform:scale(1.05);
+  box-shadow:0 10px 22px rgba(30,64,175,0.25);
+}
+
+@media(max-width:900px){
+  .client-photo{height:160px;}
 }
 
 /* ===== CONTACT FORM ===== */
@@ -595,9 +569,24 @@ h2{text-align:center;margin-bottom:30px;}
   border-radius:18px;
   box-shadow:0 10px 24px rgba(0,0,0,0.09);
 }
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.form-group{display:flex;flex-direction:column;gap:6px;}
-.form-group label{font-size:13px;color:#444;}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.form-group{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.form-group label{
+  font-size:13px;
+  color:#444;
+}
+
 .form-group input,
 .form-group textarea{
   padding:12px 12px;
@@ -605,13 +594,15 @@ h2{text-align:center;margin-bottom:30px;}
   border:1px solid #e5e7eb;
   outline:none;
   font-size:14px;
-  transition: box-shadow .35s ease, border-color .35s ease;
+  transition: box-shadow .25s ease, border-color .25s ease;
 }
+
 .form-group input:focus,
 .form-group textarea:focus{
   border-color:var(--primary);
   box-shadow:0 0 0 4px rgba(30,64,175,0.12);
 }
+
 .form-group.full{ grid-column:1 / -1; }
 
 .send-btn{
@@ -624,15 +615,18 @@ h2{text-align:center;margin-bottom:30px;}
   color:#fff;
   cursor:pointer;
   font-size:14px;
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    box-shadow .45s ease,
-    background-color .45s ease;
+  transition:transform .25s ease, box-shadow .25s ease;
   will-change: transform;
 }
+
 .send-btn:hover{
-  transform:scale(1.05);
-  box-shadow:0 14px 30px rgba(30,64,175,0.20);
+  transform:scale(1.03);
+  box-shadow:0 12px 25px rgba(30,64,175,0.2);
+}
+
+@media(max-width:900px){
+  .form-grid{grid-template-columns:1fr;}
+  .send-btn{width:100%;}
 }
 
 /* ===== POPUP ===== */
@@ -645,6 +639,7 @@ h2{text-align:center;margin-bottom:30px;}
   justify-content:center;
   z-index:9999;
 }
+
 .thank-box{
   width:min(420px, 92%);
   background:#fff;
@@ -653,8 +648,17 @@ h2{text-align:center;margin-bottom:30px;}
   text-align:center;
   box-shadow:0 18px 50px rgba(0,0,0,0.25);
 }
-.thank-box h3{ margin-bottom:8px; color:var(--primary); }
-.thank-box p{ color:#444; font-size:14px; margin-bottom:14px; }
+
+.thank-box h3{
+  margin-bottom:8px;
+  color:var(--primary);
+}
+
+.thank-box p{
+  color:#444;
+  font-size:14px;
+  margin-bottom:14px;
+}
 
 .close-btn{
   width:120px;
@@ -664,10 +668,11 @@ h2{text-align:center;margin-bottom:30px;}
   background:var(--accent);
   color:#fff;
   cursor:pointer;
-  transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  transition:transform .25s ease;
   will-change: transform;
 }
-.close-btn:hover{ transform:scale(1.06); }
+
+.close-btn:hover{ transform:scale(1.04); }
 
 /* ===== THEME TOGGLE BUTTON ===== */
 .theme-toggle{
@@ -683,27 +688,28 @@ h2{text-align:center;margin-bottom:30px;}
   font-size:20px;
   cursor:pointer;
   box-shadow:0 10px 30px rgba(0,0,0,0.25);
-  transition:
-    transform .45s cubic-bezier(.2,.8,.2,1),
-    background-color .45s ease,
-    box-shadow .45s ease;
+  transition:transform .3s ease, background-color .3s ease;
   z-index:9999;
 }
-.theme-toggle:hover{
-  transform:scale(1.12);
-  box-shadow:0 18px 45px rgba(0,0,0,0.22);
-}
+.theme-toggle:hover{ transform:scale(1.1); }
 
 /* ===== THEMES ===== */
-body.theme-purple{ --primary:#7c3aed; --accent:#a78bfa; }
-body.theme-orange{ --primary:#ea580c; --accent:#fb923c; }
-
-/* ================= ONLINE DOT ================= */
-.brand{
+body.theme-purple{
+  --primary:#7c3aed;
+  --accent:#a78bfa;
+}
+body.theme-orange{
+  --primary:#ea580c;
+  --accent:#fb923c;
+}
+  .brand,
+.mini-name{
   display:flex;
   align-items:center;
   gap:8px;
 }
+
+/* Online indicator */
 .online-dot{
   width:10px;
   height:10px;
@@ -713,6 +719,8 @@ body.theme-orange{ --primary:#ea580c; --accent:#fb923c; }
   display:inline-block;
   position:relative;
 }
+
+/* Optional pulse effect */
 .online-dot::after{
   content:"";
   position:absolute;
@@ -721,102 +729,12 @@ body.theme-orange{ --primary:#ea580c; --accent:#fb923c; }
   border:2px solid rgba(34,197,94,0.35);
   animation:pulse 1.6s ease-out infinite;
 }
+
 @keyframes pulse{
   0%{ transform:scale(0.6); opacity:0.9; }
   100%{ transform:scale(1.6); opacity:0; }
 }
 
-/* dot near Home (we will keep hidden on mobile) */
-.nav-dot{ display:none; margin-left:6px; vertical-align:middle; }
-
-/* ================= MOBILE FIX PACK ================= */
-img, video, iframe { max-width: 100%; }
-
-/* ----------- Tablet & Mobile (<= 900px) ----------- */
-@media (max-width: 900px){
-  #home{
-    grid-template-columns: 1fr;
-    text-align:center;
-    padding: 110px 16px 60px;
-    gap: 26px;
-  }
-  .hero-social{justify-content:center;}
-  .hero-text h1{ font-size: 32px; }
-  .hero-text p{ font-size: 16px; }
-
-  .profile-wrap{
-    width: 220px;
-    height: 220px;
-  }
-
-  .work-item{ grid-template-columns:1fr; text-align:left; }
-  .work-media img,.work-media video{ height:240px; }
-  .work-media iframe{ height:220px; }
-  .client-photo{height:160px;}
-  .form-grid{grid-template-columns:1fr;}
-  .send-btn{width:100%;}
-}
-
-/* ----------- Mobile (<= 768px) ----------- */
-@media (max-width: 768px){
-  .floating-nav,.floating-social{display:none;}
-
-  nav{
-    padding: 12px 12px;
-    gap: 10px;
-    flex-wrap:wrap;
-  }
-  nav strong{
-    font-size: 14px;
-    white-space: nowrap;
-  }
-  nav ul{
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  nav ul li a{
-    font-size: 13px;
-    padding: 6px 8px;
-  }
-
-  section{ padding: 70px 14px; }
-
-  .work-item{
-    grid-template-columns: 1fr;
-    padding: 16px;
-    gap: 16px;
-  }
-  .work-content{ padding: 14px; }
-  .work-content h3{ font-size: 18px; }
-  .work-content p{ font-size: 14px; }
-
-  .work-media img,
-  .work-media video,
-  .work-media iframe{
-    height: 220px !important;
-  }
-
-  .clients-grid{ grid-template-columns: 1fr; }
-  .client-photo{ height: 170px; }
-  .contact-form{ padding: 16px; }
-
-  /* ✅ FIX: keep dot near name on mobile, hide dot in Home */
-  .brand .online-dot{ display:inline-block; }
-  .nav-dot{ display:none !important; }
-}
-
-/* ----------- Very Small Phones (<= 420px) ----------- */
-@media (max-width: 420px){
-  .hero-text h1{ font-size: 28px; }
-  .hero-social a{ width: 38px; height: 38px; }
-
-  .mini-profile{
-    left: 10px;
-    right: 10px;
-    width: calc(100% - 20px);
-  }
-}
 </style>
 </head>
 
@@ -824,15 +742,11 @@ img, video, iframe { max-width: 100%; }
 
 <nav>
   <strong class="brand">
-    Chandan Kumar <span class="online-dot" aria-label="Online"></span>
-  </strong>
+  Chandan Kumar<span class="online-dot" aria-label="Online"></span>
+</strong>
 
   <ul>
-    <li>
-      <a href="#home" class="active">
-        Home <span class="online-dot nav-dot" aria-label="Online"></span>
-      </a>
-    </li>
+    <li><a href="#home" class="active">Home</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#clients">Clients</a></li>
@@ -844,6 +758,7 @@ img, video, iframe { max-width: 100%; }
   <img src="images/profile.jpeg" alt="Profile">
   <div>
     <h4>Chandan Kumar</h4>
+   
     <p id="mini-typing"></p>
   </div>
 </div>
@@ -896,6 +811,7 @@ img, video, iframe { max-width: 100%; }
 
 <section id="about" class="reveal about-section">
   <h2>About Me</h2>
+
   <p class="about-text">
     I’m <strong>Chandan Kumar</strong>, a creative <strong>Video Editor & Graphic Designer</strong>.
     I design engaging posters, social media creatives, and professional video edits
@@ -907,14 +823,17 @@ img, video, iframe { max-width: 100%; }
       <h3>🎬 Video Editing</h3>
       <p>Reels, YouTube videos, shorts, transitions & storytelling edits.</p>
     </div>
+
     <div class="about-card">
       <h3>🎨 Graphic Design</h3>
       <p>Posters, banners, visiting cards & social media creatives.</p>
     </div>
+
     <div class="about-card">
       <h3>🛠 Tools</h3>
       <p>CapCut, Alight Motion, Canva, VN, After Effects (learning).</p>
     </div>
+
     <div class="about-card">
       <h3>💼 Experience</h3>
       <p>Worked with clients & brands for digital content and promotions.</p>
@@ -930,15 +849,17 @@ img, video, iframe { max-width: 100%; }
     <div class="work-media">
       <img src="images/poster1.jpg" onclick="openLightbox(this)" style="cursor:pointer;">
     </div>
+
     <div class="work-content">
       <h3>Antique Choker Set Poster Design</h3>
       <p class="work-desc typing-text">
         I designed this jewellery promotional poster for Rajvansh Jewellers with a premium and elegant look.
-        For creating this design, I used Canva for layout and typography,
+        For creating this design, I used Canva for layout and typography, 
         took inspiration from Pinterest, and added creative finishing touches using Alight Motion.
-        This poster highlights the royal antique choker set with a rich background,
+        This poster highlights the royal antique choker set with a rich background, 
         clean branding, and attractive product presentation.
       </p>
+
       <div class="work-tags">
         <span>Poster</span><span>Social Media</span><span>Canva</span>
       </div>
@@ -949,14 +870,16 @@ img, video, iframe { max-width: 100%; }
     <div class="work-media">
       <img src="images/poster2.jpg" onclick="openLightbox(this)" style="cursor:pointer;">
     </div>
+
     <div class="work-content">
       <h3>A Forever Promise Starts Here</h3>
       <p class="work-desc typing-text">
-        I created this promotional poster for Rajvansh Jewellers with a premium and elegant look.
+        I created this promotional poster for Rajvansh Jewellers with a premium and elegant look. 
         The spotlight effect and rich background highlight the ring beautifully.
-        This design was made using Canva, with inspiration from Pinterest,
+        This design was made using Canva, with inspiration from Pinterest, 
         and finishing effects added through Alight Motion.
       </p>
+
       <div class="work-tags">
         <span>Poster</span><span>Branding</span><span>Photoshop</span>
       </div>
@@ -970,12 +893,14 @@ img, video, iframe { max-width: 100%; }
         Your browser does not support video.
       </video>
     </div>
+
     <div class="work-content">
       <h3>Instagram Reel Edit for a Client</h3>
       <p class="work-desc typing-text">
         Short reel edit with smooth transitions, beats sync, and clean text overlays.
         Made to increase engagement and watch time.
       </p>
+
       <div class="work-tags">
         <span>Video</span><span>Reel</span><span>CapCut</span>
       </div>
@@ -986,6 +911,7 @@ img, video, iframe { max-width: 100%; }
     <div class="work-media">
       <iframe src="https://www.youtube.com/embed/6qpJ0dgWH-I?si=q7D4RwawS2djeR1U" allowfullscreen></iframe>
     </div>
+
     <div class="work-content">
       <h3>The Garden Of Chamba - Himalayan_Healer_ YT</h3>
       <p class="work-desc typing-text">
@@ -1002,6 +928,7 @@ img, video, iframe { max-width: 100%; }
     <div class="work-media">
       <iframe src="https://www.youtube.com/embed/_JrsHfgQ8g0?si=R9r0a0xa6juAsSzl" allowfullscreen></iframe>
     </div>
+
     <div class="work-content">
       <h3>leo Horoscope - ALPANA AstroTarot</h3>
       <p class="work-desc typing-text">
@@ -1104,7 +1031,7 @@ Video Editor & Graphic Designer">
     <button type="submit" class="send-btn">Submit</button>
   </form>
 
-  <div id="thankPopup" class="thank-popup">
+  <div id="thankPopup" class="thank-popup" style="display:none;">
     <div class="thank-box">
       <h3>✅ Thank you for reaching out!</h3>
       <p>Your message has been submitted successfully.</p>
@@ -1135,42 +1062,28 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
-/* ✅ NAV HEIGHT (fix mobile wrap issue + active indicator) */
-const navBar = document.querySelector("nav");
-function updateNavHeight(){
-  const h = navBar?.offsetHeight || 90;
-  document.documentElement.style.setProperty("--navH", h + "px");
-}
-window.addEventListener("resize", updateNavHeight);
-updateNavHeight();
+/* MINI PROFILE + ACTIVE NAV */
+const mini=document.getElementById("miniProfile");
+const navLinks=document.querySelectorAll("nav a");
+const navIcons=document.querySelectorAll(".floating-nav a");
+const sections=document.querySelectorAll("section");
 
-/* MINI PROFILE */
-const miniProfile = document.querySelector(".mini-profile");
-let miniVisible = false;
+window.addEventListener("scroll",()=>{
+  mini.style.display=window.scrollY>300?"flex":"none";
 
-window.addEventListener("scroll", () => {
-  const shouldShow = window.scrollY > 140;
+  let current="";
+  sections.forEach(sec=>{
+    if(window.scrollY>=sec.offsetTop-200) current=sec.id;
+  });
 
-  if (shouldShow && !miniVisible) {
-    miniVisible = true;
-    miniProfile.style.display = "flex";
-    requestAnimationFrame(() => miniProfile.classList.add("show"));
-  }
-
-  if (!shouldShow && miniVisible) {
-    miniVisible = false;
-    miniProfile.classList.remove("show");
-    setTimeout(() => {
-      if (!miniVisible) miniProfile.style.display = "none";
-    }, 450);
-  }
-},{passive:true});
+  navLinks.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+  navIcons.forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+current));
+});
 
 /* TYPING (hero + mini) */
 function typing(id){
   const text="Video Editor & Graphic Designer";
   let i=0, el=document.getElementById(id);
-  if(!el) return;
   el.textContent="";
   (function type(){
     if(i<text.length){
@@ -1191,49 +1104,15 @@ function reveal(){
     }
   });
 }
-window.addEventListener("scroll",reveal,{passive:true});
+window.addEventListener("scroll",reveal);
 reveal();
 
-/* ✅ ACTIVE NAV ON SCROLL (TOP + RIGHT) */
-const sections = document.querySelectorAll("section[id]");
-const topLinks = document.querySelectorAll("nav ul li a");
-const rightLinks = document.querySelectorAll(".floating-nav a");
-
-function setActiveLink(id){
-  topLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
-  rightLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
-}
-
-function onScrollActive(){
-  const marker = (navBar?.offsetHeight || 90) + 20; // ✅ dynamic marker
-  let currentId = "home";
-
-  sections.forEach(sec=>{
-    const rect = sec.getBoundingClientRect();
-    if(rect.top <= marker && rect.bottom > marker){
-      currentId = sec.id;
-    }
-  });
-
-  setActiveLink(currentId);
-}
-window.addEventListener("scroll", onScrollActive, {passive:true});
-onScrollActive();
-
-/* ✅ Also update when clicking links */
-[...topLinks, ...rightLinks].forEach(link=>{
-  link.addEventListener("click", ()=>{
-    const id = link.getAttribute("href").replace("#","");
-    setTimeout(()=>setActiveLink(id), 180);
-  });
-});
-
-/* LIGHTBOX (global for onclick) */
-window.openLightbox = function(img){
+/* LIGHTBOX */
+function openLightbox(img){
   document.getElementById("lightbox").style.display="flex";
   document.getElementById("lightbox-img").src = img.src;
 }
-window.closeLightbox = function(){
+function closeLightbox(){
   document.getElementById("lightbox").style.display="none";
 }
 
@@ -1307,6 +1186,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* THEME TOGGLE */
 const body = document.body;
 const themeBtn = document.getElementById("themeToggle");
+
 const themes = ["blue", "purple", "orange"];
 let index = 0;
 
@@ -1323,10 +1203,12 @@ function applyTheme(){
     themeBtn.textContent = "💙";
   }
 }
+
 themeBtn.addEventListener("click", ()=>{
   index = (index + 1) % themes.length;
   applyTheme();
 });
+
 applyTheme();
 </script>
 
