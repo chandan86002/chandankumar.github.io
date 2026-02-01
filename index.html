@@ -1088,6 +1088,30 @@ Video Editor & Graphic Designer">
 
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
+  let i=0, el=document.getElementById(id);
+  el.textContent="";
+  (function type(){
+    if(i<text.length){
+      el.textContent+=text[i++];
+      setTimeout(type,80);
+    }
+  })();
+}
+typing("hero-typing");
+typing("mini-typing");
+
+/* SCROLL REVEAL */
+const reveals=document.querySelectorAll(".reveal");
+function reveal(){
+  reveals.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight-120){
+      el.classList.add("active");
+    }
+  });
+}
+window.addEventListener("scroll",reveal,{passive:true});
+reveal();
+
 <script>
 /* MINI PROFILE */
 const miniProfile = document.querySelector(".mini-profile");
@@ -1109,7 +1133,7 @@ window.addEventListener("scroll", () => {
       if (!miniVisible) miniProfile.style.display = "none";
     }, 450);
   }
-});
+},{passive:true});
 
 /* TYPING (hero + mini) */
 function typing(id){
@@ -1137,6 +1161,42 @@ function reveal(){
 }
 window.addEventListener("scroll",reveal,{passive:true});
 reveal();
+
+/* ✅ ACTIVE NAV ON SCROLL (TOP + RIGHT) */
+const sections = document.querySelectorAll("section[id]");
+const topLinks = document.querySelectorAll("nav ul li a");
+const rightLinks = document.querySelectorAll(".floating-nav a");
+
+function setActiveLink(id){
+  // top nav
+  topLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+  // right floating nav
+  rightLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + id));
+}
+
+function onScrollActive(){
+  let currentId = "home";
+
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top <= 120 && rect.bottom > 120){
+      currentId = sec.id;
+    }
+  });
+
+  setActiveLink(currentId);
+}
+
+window.addEventListener("scroll", onScrollActive, {passive:true});
+onScrollActive();
+
+/* ✅ Also update when clicking links */
+[...topLinks, ...rightLinks].forEach(link=>{
+  link.addEventListener("click", ()=>{
+    const id = link.getAttribute("href").replace("#","");
+    setTimeout(()=>setActiveLink(id), 150);
+  });
+});
 
 /* LIGHTBOX */
 function openLightbox(img){
