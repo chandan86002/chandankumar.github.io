@@ -1263,15 +1263,11 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
-/* ✅ STOP AUTO JUMP TO #home ON RELOAD (run first) */
-(function () {
-  if (window.location.hash) {
-    // remove #something from URL so refresh doesn't jump
-    history.replaceState(null, "", window.location.pathname + window.location.search);
-    // ensure top position
-    window.scrollTo(0, 0);
-  }
-})();
+/* ✅ ALWAYS GO TO HOME ON REFRESH/RELOAD */
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+  history.replaceState(null, "", "#home");
+});
 
 /* MINI PROFILE + ACTIVE NAV */
 const mini = document.getElementById("miniProfile");
@@ -1403,12 +1399,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closePopup.addEventListener("click", () => {
     popup.style.display = "none";
-
-    /* ✅ DO NOT set hash (it causes #home on refresh) */
-    // window.location.hash = "home";  ❌ removed
-
-    /* ✅ If you want: go top without hash */
     window.scrollTo({ top: 0, behavior: "smooth" });
+    history.replaceState(null, "", "#home");
   });
 });
 
@@ -1421,7 +1413,6 @@ let index = 0;
 
 function applyTheme() {
   body.classList.remove("theme-purple", "theme-orange");
-
   if (!themeBtn) return;
 
   if (themes[index] === "purple") {
