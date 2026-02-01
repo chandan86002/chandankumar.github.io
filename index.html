@@ -15,10 +15,10 @@
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-/* ✅ Fix anchor jump under fixed navbar */
+/* ✅ Fix anchor jump under fixed navbar (dynamic height) */
 html{
   scroll-behavior:smooth;
-  scroll-padding-top:90px;
+  scroll-padding-top: var(--navH, 90px);
 }
 
 body{
@@ -28,8 +28,8 @@ body{
   overflow-x:hidden;
 }
 
-/* ✅ Fix section jump when clicking nav */
-section{ scroll-margin-top:90px; }
+/* ✅ Fix section jump when clicking nav (dynamic height) */
+section{ scroll-margin-top: var(--navH, 90px); }
 
 /* ================= NAVBAR (ANIMATED) ================= */
 nav{
@@ -726,7 +726,7 @@ body.theme-orange{ --primary:#ea580c; --accent:#fb923c; }
   100%{ transform:scale(1.6); opacity:0; }
 }
 
-/* ✅ Mobile: move dot near HOME */
+/* dot near Home (we will keep hidden on mobile) */
 .nav-dot{ display:none; margin-left:6px; vertical-align:middle; }
 
 /* ================= MOBILE FIX PACK ================= */
@@ -759,10 +759,6 @@ img, video, iframe { max-width: 100%; }
 
 /* ----------- Mobile (<= 768px) ----------- */
 @media (max-width: 768px){
-  /* when nav wraps, increase scroll padding */
-  html{ scroll-padding-top:120px; }
-  section{ scroll-margin-top:120px; }
-
   .floating-nav,.floating-social{display:none;}
 
   nav{
@@ -805,10 +801,9 @@ img, video, iframe { max-width: 100%; }
   .client-photo{ height: 170px; }
   .contact-form{ padding: 16px; }
 
-  /* hide dot near name on mobile, show near Home */
-  .brand .online-dot{ display:none; }
-  .nav-dot{ display:inline-block; width:9px; height:9px; }
-  .nav-dot::after{ inset:-5px; }
+  /* ✅ FIX: keep dot near name on mobile, hide dot in Home */
+  .brand .online-dot{ display:inline-block; }
+  .nav-dot{ display:none !important; }
 }
 
 /* ----------- Very Small Phones (<= 420px) ----------- */
@@ -1140,6 +1135,15 @@ Video Editor & Graphic Designer">
 <button id="themeToggle" class="theme-toggle" title="Change Theme">🎨</button>
 
 <script>
+/* ✅ NAV HEIGHT (fix mobile wrap issue + active indicator) */
+const navBar = document.querySelector("nav");
+function updateNavHeight(){
+  const h = navBar?.offsetHeight || 90;
+  document.documentElement.style.setProperty("--navH", h + "px");
+}
+window.addEventListener("resize", updateNavHeight);
+updateNavHeight();
+
 /* MINI PROFILE */
 const miniProfile = document.querySelector(".mini-profile");
 let miniVisible = false;
@@ -1201,7 +1205,7 @@ function setActiveLink(id){
 }
 
 function onScrollActive(){
-  const marker = 130; // point from top to detect section
+  const marker = (navBar?.offsetHeight || 90) + 20; // ✅ dynamic marker
   let currentId = "home";
 
   sections.forEach(sec=>{
